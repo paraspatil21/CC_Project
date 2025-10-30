@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT University | MBA (Online) Programme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <!-- Particle.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles - Matching the first code */
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        
+        .logo {
+            width: 150px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+        
+        /* Rest of your existing styles */
+        .futuristic-bg {
+            background: linear-gradient(135deg, #f8faff 0%, #e6eeff 50%, #f0f4ff 100%);
+        }
+        
+        .cyber-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .neon-gradient {
+            background: linear-gradient(90deg, #ff6b9d, #a855f7, #4f46e5);
+        }
+        
+        .hologram-effect {
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: hologram 3s infinite linear;
+        }
+        
+        @keyframes hologram {
+            0% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        .cyber-border {
+            position: relative;
+            border: 1px solid transparent;
+            background: linear-gradient(45deg, #ffffff, #ffffff), 
+                        linear-gradient(135deg, #ff6b9d, #a855f7, #4f46e5);
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+        }
+        
+        .matrix-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .matrix-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 70%, rgba(167, 139, 250, 0.1) 90%, transparent),
+                        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(167, 139, 250, 0.05) 3px, rgba(167, 139, 250, 0.05) 4px);
+            z-index: -1;
+        }
+        
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch-text::before, .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff6b9d;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: 1px 0 #a855f7;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
+        
+        .floating-3d {
+            transform-style: preserve-3d;
+            animation: float3d 6s ease-in-out infinite;
+        }
+        
+        @keyframes float3d {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0); }
+            33% { transform: translate3d(10px, -10px, 10px) rotate3d(1, 1, 0, 5deg); }
+            66% { transform: translate3d(-5px, 5px, -5px) rotate3d(0, 1, 1, 3deg); }
+        }
+        
+        .particle-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .cyber-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3),
+                        0 0 20px rgba(102, 126, 234, 0.2),
+                        0 0 30px rgba(102, 126, 234, 0.1);
+        }
+        
+        .holographic-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .cyber-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .neuro-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                inset 3px 3px 5px rgba(255, 255, 255, 0.5),
+                inset -3px -3px 5px rgba(167, 139, 250, 0.1),
+                5px 5px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .neuro-card:hover {
+            box-shadow: 
+                inset 3px 3px 5px rgba(255, 255, 255, 0.5),
+                inset -3px -3px 5px rgba(167, 139, 250, 0.1),
+                10px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .matrix-text {
+            font-family: 'Orbitron', monospace;
+            color: #4f46e5;
+            text-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ff6b9d, #a855f7, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .cyber-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #1a1a2e;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .scan-line {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scan-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4f46e5, transparent);
+            animation: scan 2s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .morphing-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, rgba(167, 139, 250, 0.05) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(167, 139, 250, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0% { width: 100%; height: 100%; opacity: 1; }
+            100% { width: 130%; height: 130%; opacity: 0; }
+        }
+        
+        .digital-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 70%, rgba(167, 139, 250, 0.05) 90%, transparent),
+                        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(167, 139, 250, 0.03) 3px, rgba(167, 139, 250, 0.03) 4px);
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .quantum-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quantum-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b9d, #a855f7, #4f46e5, #4f46e5, #a855f7, #ff6b9d);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 16px;
+            animation: quantum-glow 8s linear infinite;
+        }
+        
+        @keyframes quantum-glow {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+        
+        .hologram-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .hologram-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transition: 0.5s;
+        }
+        
+        .hologram-card:hover::before {
+            left: 100%;
+        }
+        
+        .data-stream {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 70%, rgba(167, 139, 250, 0.05) 90%, transparent),
+                        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(167, 139, 250, 0.03) 3px, rgba(167, 139, 250, 0.03) 4px);
+            z-index: -1;
+            opacity: 0.3;
+            animation: data-flow 10s linear infinite;
+        }
+        
+        @keyframes data-flow {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card canvas {
+            display: block;
+            margin: 0 auto;
+            max-height: 200px;
+        }
+        
+        .ranking-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .ranking-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ranking-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #ff6b9d, #a855f7, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .ranking-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        /* Interactive Book Styles */
+        .book-container {
+            perspective: 1500px;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: left center;
+        }
+        
+        .book-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border-radius: 10px 20px 20px 10px;
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            backface-visibility: hidden;
+            cursor: pointer;
+        }
+        
+        .book-cover h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .book-cover p {
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+        
+        .book-pages {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+            transform: rotateY(-180deg);
+            backface-visibility: hidden;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .book-pages h4 {
+            color: #4f46e5;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .book-pages ul {
+            list-style-type: none;
+        }
+        
+        .book-pages li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .book-pages li:before {
+            content: "•";
+            color: #a855f7;
+            position: absolute;
+            left: 0;
+        }
+        
+        .book-container:hover .book {
+            transform: rotateY(-30deg);
+        }
+        
+        /* Glowing MBA Icon */
+        .mba-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mba-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        
+        .mba-icon:hover {
+            box-shadow: 0 0 30px rgba(79, 70, 229, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .mba-icon:hover::before {
+            opacity: 1;
+            animation: icon-glow 2s infinite;
+        }
+        
+        @keyframes icon-glow {
+            0% { transform: rotate(45deg) translateX(-100%) translateY(-100%); }
+            100% { transform: rotate(45deg) translateX(100%) translateY(100%); }
+        }
+        
+        /* Section Backgrounds */
+        .section-light {
+            background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+        }
+        
+        .section-accent {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #a855f7, #4f46e5);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #9333ea, #4338ca);
+        }
+
+        /* New Hero Section Styles */
+        .hero-section {
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(37, 99, 235, 0.85)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 2rem;
+        }
+        
+        .hero-text {
+            color: white;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .hero-feature i {
+            color: #60a5fa;
+            font-size: 1.25rem;
+        }
+        
+        .hero-form {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1e3a8a;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .phone-input-group {
+            display: flex;
+        }
+        
+        .country-code {
+            width: 30%;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+        }
+        
+        .phone-number {
+            width: 70%;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .no-surname {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .no-surname input {
+            width: auto;
+        }
+        
+        .no-surname label {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+        
+        .form-disclaimer {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 1.5rem;
+            line-height: 1.4;
+        }
+        
+        .form-button {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .form-button:hover {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Specializations Section */
+        .specializations-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+        
+        .section-title p {
+            font-size: 1.125rem;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .specialization-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .specialization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .specialization-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .specialization-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+        
+        .specialization-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        .specialization-list {
+            list-style-type: none;
+        }
+        
+        .specialization-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .specialization-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .specialization-list li i {
+            color: #10b981;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .book-container {
+                width: 260px;
+                height: 340px;
+            }
+            
+            .mba-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 1.8rem;
+            }
+            
+            .ranking-number {
+                font-size: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                width: 120px;
+                height: 50px;
+            }
+            
+            .header-gradient .text-xl {
+                font-size: 1.1rem;
+            }
+            
+            .header-gradient .text-xs {
+                font-size: 0.7rem;
+            }
+            
+            .book-container {
+                width: 220px;
+                height: 300px;
+            }
+            
+            .mba-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 1.5rem;
+            }
+            
+            .ranking-number {
+                font-size: 1.8rem;
+            }
+            
+            .ranking-description {
+                font-size: 0.8rem;
+            }
+            
+            .cyber-card {
+                padding: 1.5rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+            
+            .chart-container {
+                height: 180px;
+            }
+            
+            .hero-section {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.125rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .header-gradient .flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .header-gradient .hidden.md\\:flex {
+                display: none;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .book-container {
+                width: 200px;
+                height: 280px;
+            }
+            
+            .mba-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.3rem;
+            }
+            
+            .ranking-number {
+                font-size: 1.5rem;
+            }
+            
+            .ranking-description {
+                font-size: 0.75rem;
+            }
+            
+            .cyber-card {
+                padding: 1rem;
+            }
+            
+            .stat-card {
+                padding: 0.8rem;
+            }
+            
+            .chart-container {
+                height: 160px;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .specializations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .book-container {
+                width: 180px;
+                height: 250px;
+            }
+            
+            .mba-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.1rem;
+            }
+            
+            .ranking-number {
+                font-size: 1.3rem;
+            }
+            
+            .ranking-description {
+                font-size: 0.7rem;
+            }
+            
+            .cyber-card {
+                padding: 0.8rem;
+            }
+            
+            .stat-card {
+                padding: 0.6rem;
+            }
+            
+            .chart-container {
+                height: 140px;
+            }
+            
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hero-form {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 1024px) {
+            .text-5xl {
+                font-size: 3rem;
+            }
+            
+            .text-4xl {
+                font-size: 2.5rem;
+            }
+            
+            .text-3xl {
+                font-size: 2rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-xl {
+                font-size: 1.25rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+            
+            .text-4xl {
+                font-size: 2rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-xl {
+                font-size: 1.125rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .text-5xl {
+                font-size: 2rem;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            .text-xl {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Responsive Spacing */
+        @media (max-width: 768px) {
+            .py-20 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            
+            .py-16 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .py-12 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .pt-32 {
+                padding-top: 2rem;
+            }
+            
+            .pb-20 {
+                padding-bottom: 2rem;
+            }
+            
+            .mb-16 {
+                margin-bottom: 2rem;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1rem;
+            }
+            
+            .mb-6 {
+                margin-bottom: 0.75rem;
+            }
+            
+            .mb-4 {
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .py-20 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .py-16 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .py-12 {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .pt-32 {
+                padding-top: 1.5rem;
+            }
+            
+            .pb-20 {
+                padding-bottom: 1.5rem;
+            }
+            
+            .mb-16 {
+                margin-bottom: 1.5rem;
+            }
+            
+            .mb-8 {
+                margin-bottom: 0.75rem;
+            }
+            
+            .mb-6 {
+                margin-bottom: 0.5rem;
+            }
+            
+            .mb-4 {
+                margin-bottom: 0.25rem;
+            }
+        }
+        
+        /* Responsive Grid Gaps */
+        @media (max-width: 768px) {
+            .gap-12 {
+                gap: 2rem;
+            }
+            
+            .gap-8 {
+                gap: 1.5rem;
+            }
+            
+            .gap-6 {
+                gap: 1rem;
+            }
+            
+            .gap-4 {
+                gap: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .gap-12 {
+                gap: 1.5rem;
+            }
+            
+            .gap-8 {
+                gap: 1rem;
+            }
+            
+            .gap-6 {
+                gap: 0.75rem;
+            }
+            
+            .gap-4 {
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="futuristic-bg">
+    <!-- Particle Background -->
+    <div id="particles-js" class="particle-bg"></div>
+    
+    <!-- Morphing Grid Background -->
+    <div class="morphing-grid"></div>
+    
+    <!-- Header Section with Integrated Logo -->
+    <header class="header-gradient text-white py-4 px-6 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo Section - Matching the first code -->
+            <div class="flex items-center space-x-3">
+                <div class="logo">
+                    <img src="VIT.png" alt="VIT University Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">VIT University</h1>
+                    <p class="text-xs text-blue-100">UGC Approved Online Degree Programmes</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav hidden md:flex space-x-8">
+                <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+                <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+                <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+                <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <div class="mobile-menu md:hidden">
+                <button id="mobileMenuButton" class="text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- CTA Button -->
+            <a href="https://forms.gle/Vd6DR2UeB9LbPJuC7" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105 hidden md:block">
+                Apply Now
+            </a>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="md:hidden hidden mt-4 bg-blue-800 rounded-lg p-4">
+            <div class="flex flex-col space-y-4">
+                <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+                <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+                <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+                <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+                <a href="https://forms.gle/Vd6DR2UeB9LbPJuC7" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all text-center">
+                    Apply Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- New Hero Section with Photo Background and Form -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="hero-text">
+                    <h1>MBA (Online) Programme</h1>
+                    <p>Pursue Master of Business Administration (MBA) from India's top 10 University in India*. Earn a degree equivalent to on-campus degree.</p>
+                    
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Earn a UGC Entitled and AICTE Approved MBA Degree</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>10+ Diverse Electives from Various Domains</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Live Online Sessions by VIT Faculty</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Join the Prestigious Network of VIT Alumni</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#specializations" class="cyber-button inline-block">
+                        <i class="fas fa-book-open mr-2"></i> Explore Specializations
+                    </a>
+                </div>
+                
+                <div class="hero-form">
+                    <h2 class="form-title">Get Your Brochure</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" class="form-input" placeholder="First Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" class="form-input" placeholder="Last Name" required>
+                            <div class="no-surname">
+                                <input type="checkbox" id="noSurname">
+                                <label for="noSurname">I Don't have a Surname or Last Name</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-input">
+                                <option>India</option>
+                                <option>United States</option>
+                                <option>United Kingdom</option>
+                                <option>Canada</option>
+                                <option>Australia</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Mobile Number</label>
+                            <div class="phone-input-group">
+                                <select class="form-input country-code">
+                                    <option>+91</option>
+                                    <option>+1</option>
+                                    <option>+44</option>
+                                </select>
+                                <input type="tel" id="phone" class="form-input phone-number" placeholder="Phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience">Work Experience</label>
+                            <select id="experience" class="form-input">
+                                <option value="">Select Work Experience</option>
+                                <option value="0-2">0-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="graduation">Graduation Year/Expected Graduation Year</label>
+                            <select id="graduation" class="form-input">
+                                <option value="">Select Graduation Year</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019 or earlier</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" class="form-input" placeholder="City" required>
+                        </div>
+                        
+                        <p class="form-disclaimer">
+                            By clicking the button below, you agree to receive communications via Email/Call/WhatsApp/SMS from VIT and its associates about this programme and other relevant programmes. This will override registry on DND/NDNC.
+                        </p>
+                        
+                        <button type="submit" class="form-button">Get Brochure</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations Section -->
+    <section id="specializations" class="specializations-section">
+        <div class="section-title">
+            <h2>Specialization Electives</h2>
+            <p>Choose from our diverse range of specializations to tailor your MBA to your career goals</p>
+        </div>
+        
+        <div class="specializations-grid">
+            <!-- General Management -->
+            <div class="specialization-card" data-aos="fade-up">
+                <div class="specialization-header">
+                    <div class="specialization-icon" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="specialization-title">General Management</h3>
+                </div>
+                <ul class="specialization-list">
+                    <li><i class="fas fa-check"></i> Knowledge Management</li>
+                    <li><i class="fas fa-check"></i> Digital Marketing</li>
+                    <li><i class="fas fa-check"></i> Indian Financial System</li>
+                    <li><i class="fas fa-check"></i> Leadership and Team Building</li>
+                    <li><i class="fas fa-check"></i> Legal Aspects of Business</li>
+                </ul>
+            </div>
+            
+            <!-- Marketing -->
+            <div class="specialization-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="specialization-header">
+                    <div class="specialization-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="specialization-title">Marketing</h3>
+                </div>
+                <ul class="specialization-list">
+                    <li><i class="fas fa-check"></i> Consumer Behaviour</li>
+                    <li><i class="fas fa-check"></i> Digital Marketing</li>
+                    <li><i class="fas fa-check"></i> Retail Management</li>
+                    <li><i class="fas fa-check"></i> Service Marketing</li>
+                    <li><i class="fas fa-check"></i> Brand Management for the Digital Era</li>
+                </ul>
+            </div>
+            
+            <!-- Operations and Supply Chain Management -->
+            <div class="specialization-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="specialization-header">
+                    <div class="specialization-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <i class="fas fa-truck-loading"></i>
+                    </div>
+                    <h3 class="specialization-title">Operations and Supply Chain Management</h3>
+                </div>
+                <ul class="specialization-list">
+                    <li><i class="fas fa-check"></i> Logistic and Supply Chain Management</li>
+                    <li><i class="fas fa-check"></i> Material Management</li>
+                    <li><i class="fas fa-check"></i> Project Management</li>
+                    <li><i class="fas fa-check"></i> Quality Management</li>
+                    <li><i class="fas fa-check"></i> Supply Chain Analytics</li>
+                </ul>
+            </div>
+            
+            <!-- Finance -->
+            <div class="specialization-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="specialization-header">
+                    <div class="specialization-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="specialization-title">Finance</h3>
+                </div>
+                <ul class="specialization-list">
+                    <li><i class="fas fa-check"></i> Indian Financial System</li>
+                    <li><i class="fas fa-check"></i> Security Analysis and Portfolio Management</li>
+                    <li><i class="fas fa-check"></i> Costing Methods and Techniques</li>
+                    <li><i class="fas fa-check"></i> Applied Fintech for Business</li>
+                    <li><i class="fas fa-check"></i> Wealth Tech and Lending Tech</li>
+                </ul>
+            </div>
+            
+            <!-- HRM -->
+            <div class="specialization-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="specialization-header">
+                    <div class="specialization-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="specialization-title">HRM</h3>
+                </div>
+                <ul class="specialization-list">
+                    <li><i class="fas fa-check"></i> Knowledge Management</li>
+                    <li><i class="fas fa-check"></i> Leadership and Team Building</li>
+                    <li><i class="fas fa-check"></i> Organisational Change and Development</li>
+                    <li><i class="fas fa-check"></i> Strategic HRM</li>
+                    <li><i class="fas fa-check"></i> HR Analytics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programme Stats Section -->
+    <section class="py-16 px-6 section-accent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    Career <span class="gradient-text">Acceleration</span> with MBA
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Unlock your potential with a VIT MBA degree
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Salary Increase Chart -->
+                <div class="stat-card" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Salary Increase After MBA</h3>
+                    <div class="chart-container">
+                        <canvas id="salaryChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">MBA graduates in India receive 77% higher median salary vs bachelor's degree</p>
+                </div>
+                
+                <!-- Hiring Trends Chart -->
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">MBA Hiring Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="hiringChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">91% of employers hired MBA graduates across all industries</p>
+                </div>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card scale-up" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Programme Duration</p>
+                            <p class="text-3xl font-bold text-indigo-600 mt-2">24 Months</p>
+                        </div>
+                        <i class="fas fa-clock text-4xl text-indigo-200"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card scale-up" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Programme Fee</p>
+                            <p class="text-3xl font-bold text-purple-600 mt-2">₹1,80,000</p>
+                        </div>
+                        <i class="fas fa-rupee-sign text-4xl text-purple-200"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card scale-up" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Eligibility</p>
+                            <p class="text-3xl font-bold text-pink-600 mt-2">Graduate 50%</p>
+                        </div>
+                        <i class="fas fa-graduation-cap text-4xl text-pink-200"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIT Rankings Section -->
+    <section class="py-20 px-6 relative section-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="cyber-card p-10 md:p-16 mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Accelerate Your Leadership Journey with VIT's MBA</h1>
+                        <p class="text-xl mb-8 text-gray-700">The <strong class="text-indigo-600">Vellore Institute of Technology (VIT)</strong> offers a 2-year online Master of Business Administration (MBA) Programme that provides a transformative educational experience to empower your professional journey.</p>
+                        <p class="text-lg mb-8 text-gray-600">A Program designed to expand your business knowledge, enhance your leadership impact, drive innovation, make bold decisions, and seize growth opportunities.</p>
+                        <a href="https://forms.gle/YTGy2nr6CyK8XmvX8" target="_blank" class="cyber-button px-8 py-4 text-lg inline-block">
+                            Apply for MBA Programme
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                        <div class="ranking-card">
+                            <div class="ranking-number">#14</div>
+                            <div class="ranking-description">Best University, 2025 NIRF University Rankings - India</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">#14</div>
+                            <div class="ranking-description">Best Research, 2025 NIRF University Rankings - India</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">TOP 2</div>
+                            <div class="ranking-description">2025 Shanghai ARWU Ranking</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">791-800</div>
+                            <div class="ranking-description">QS World University Ranking 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programme Features Section -->
+    <section class="py-20 px-6 relative overflow-hidden section-accent">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="gradient-text">Unleash</span> Your Business Potential
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive curriculum with diverse electives to blend knowledge from different domains
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="quantum-card p-1 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cyber-card p-8 h-full">
+                        <div class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Live Online Learning</h3>
+                        <p class="text-gray-600 mb-6">Learn from VIT's top management faculty through live sessions along with recorded content.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="quantum-card p-1 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cyber-card p-8 h-full">
+                        <div class="w-14 h-14 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Equivalent Degree</h3>
+                        <p class="text-gray-600 mb-6">Get an MBA degree comparable to postgraduate programmes obtained via traditional classroom training.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="quantum-card p-1 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cyber-card p-8 h-full">
+                        <div class="w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-md">
+                            <i class="fas fa-network-wired text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Alumni Network</h3>
+                        <p class="text-gray-600 mb-6">Gain alumni status from VIT and access to exclusive networking opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Stream Effect -->
+        <div class="data-stream"></div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="application" class="py-20 px-6 relative section-light">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative" data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                        Start Your <span class="gradient-text">MBA Journey</span>
+                    </h2>
+                    <p class="text-xl text-gray-700 mb-8">
+                        Join thousands of professionals who have transformed their careers with VIT University Online MBA Programme.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-500 mr-3"></i>
+                            <span class="text-gray-700">UGC Entitled and AICTE Approved Degree</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-500 mr-3"></i>
+                            <span class="text-gray-700">Live Sessions by VIT Faculty</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-500 mr-3"></i>
+                            <span class="text-gray-700">10+ Diverse Elective Options</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-500 mr-3"></i>
+                            <span class="text-gray-700">Prestigious VIT Alumni Network</span>
+                        </li>
+                    </ul>
+                    <div class="p-4 bg-indigo-50 rounded-lg mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-info-circle text-indigo-500 mr-2"></i>
+                            <span class="text-sm text-indigo-700">January 2026 Batch - Admission Open</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative" data-aos="fade-left">
+                    <div class="cyber-card p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-center gradient-text">Request Information</h3>
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="text" placeholder="First Name" class="cyber-input">
+                                <input type="text" placeholder="Last Name" class="cyber-input">
+                            </div>
+                            <input type="email" placeholder="Email Address" class="cyber-input w-full">
+                            <div class="flex">
+                                <select class="cyber-input rounded-r-none w-1/4">
+                                    <option>+91</option>
+                                </select>
+                                <input type="tel" placeholder="Mobile Number" class="cyber-input rounded-l-none w-3/4">
+                            </div>
+                            <select class="cyber-input w-full">
+                                <option value="">Work Experience</option>
+                                <option value="0-2">0-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                            <select class="cyber-input w-full">
+                                <option value="">Graduation Year</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020 or earlier</option>
+                            </select>
+                            <input type="text" placeholder="City" class="cyber-input w-full">
+                            <div class="text-xs text-gray-500 mb-4">
+                                By clicking the button below, you agree to receive communications via Email/Call/WhatsApp/SMS from VIT and its associates about this programme and other relevant programmes. This will override registry on DND/NDNC.
+                            </div>
+                            <a href="https://forms.gle/YTGy2nr6CyK8XmvX8" target="_blank" class="cyber-button w-full text-center">
+                                Submit Application
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold">VIT</span>
+                        </div>
+                        <span class="text-xl font-bold text-indigo-900">VIT UNIVERSITY</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">UGC Approved Online Degree Programmes</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-indigo-500 hover:text-white transition-colors text-gray-600">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-indigo-500 hover:text-white transition-colors text-gray-600">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-indigo-500 hover:text-white transition-colors text-gray-600">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-indigo-500 hover:text-white transition-colors text-gray-600">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-indigo-900">Programmes</h3>
+                    <ul class="space-y-3">
+                        <li><a href="mba.html" class="text-gray-600 hover:text-indigo-600 transition-colors">MBA (Online)</a></li>
+                        <li><a href="mca.html" class="text-gray-600 hover:text-indigo-600 transition-colors">MCA (Online)</a></li>
+                        <li><a href="msc_in_ds.html" class="text-gray-600 hover:text-indigo-600 transition-colors">M.Sc. Data Science</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-indigo-900">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors">UGC Disclosures</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors">AICTE Approvals</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors">Scholarships</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-indigo-900">Contact</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-500 mr-3"></i>
+                            <span class="text-gray-600">info@vit.ac.in</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-500 mr-3"></i>
+                            <span class="text-gray-600">+91 44 1234 5678</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-12 pt-8 text-center">
+                <p class="text-gray-500">© 2025 VIT University. All rights reserved. | UGC/AICTE Approved Programmes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 50, density: { enable: true, value_area: 800 } },
+                color: { value: "#a855f7" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#a855f7",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+        
+        // Initialize Charts
+        // Salary Chart
+        const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+        const salaryChart = new Chart(salaryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Bachelor\'s Degree', 'MBA Degree'],
+                datasets: [{
+                    label: 'Median Salary',
+                    data: [100, 177],
+                    backgroundColor: [
+                        'rgba(167, 139, 250, 0.7)',
+                        'rgba(79, 70, 229, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(167, 139, 250, 1)',
+                        'rgba(79, 70, 229, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#475569',
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                    },
+                    x: {
+                        ticks: { color: '#475569' },
+                        grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        // Hiring Chart
+        const hiringCtx = document.getElementById('hiringChart').getContext('2d');
+        const hiringChart = new Chart(hiringCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['MBA Graduates', 'Other Graduates'],
+                datasets: [{
+                    data: [91, 9],
+                    backgroundColor: [
+                        'rgba(79, 70, 229, 0.7)',
+                        'rgba(167, 139, 250, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(79, 70, 229, 1)',
+                        'rgba(167, 139, 250, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+        
+        // GSAP animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate elements on scroll
+        gsap.utils.toArray('.cyber-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+        
+        // Glitch text effect
+        const glitchTexts = document.querySelectorAll('.glitch-text');
+        glitchTexts.forEach(text => {
+            setInterval(() => {
+                text.classList.add('glitching');
+                setTimeout(() => {
+                    text.classList.remove('glitching');
+                }, 300);
+            }, 5000);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>

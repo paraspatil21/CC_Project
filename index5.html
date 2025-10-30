@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT University Online Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Added Chart.js for data visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8f0ff 50%, #f0f8ff 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.25);
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out forwards;
+        }
+        
+        /* Added new animations for chart elements */
+        .chart-fade-in {
+            animation: chartFadeIn 1.2s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .scale-up {
+            animation: scaleUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes chartFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleUp {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        }
+        
+        .card-gradient-1 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+        }
+        
+        .card-gradient-2 {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        }
+        
+        .card-gradient-3 {
+            background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+        }
+        
+        .icon-bg {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Added chart container styling */
+        .chart-container {
+            position: relative;
+            height: 200px;        /* reduced height */
+            width: 100%;          /* full width but scaled */
+            max-width: 350px;     /* limits chart size */
+            margin: 0 auto;       /* center the charts */
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-card canvas {
+            display: block;
+            margin: 0 auto;
+            max-height: 200px;
+        }
+        
+        /* Square card styles */
+        .square-card {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Form styling */
+        .form-container {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Enhanced 3D Crystal Cubes Animation */
+        .cubes-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            perspective: 1200px;
+        }
+        
+        .crystal-cube {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            transform-style: preserve-3d;
+            opacity: 0;
+            animation: emergeCube 1.5s forwards, rotateCube 20s infinite linear;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+        }
+        
+        .crystal-cube.mba {
+            animation-delay: 1.5s, 1.5s;
+            top: 20%;
+            left: 70%;
+        }
+        
+        .crystal-cube.mca {
+            animation-delay: 2s, 2s;
+            top: 50%;
+            left: 80%;
+        }
+        
+        .crystal-cube.msds {
+            animation-delay: 2.5s, 2.5s;
+            top: 70%;
+            left: 60%;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            backface-visibility: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Crystal color blend for each cube */
+        .crystal-cube.mba .cube-face {
+            background: linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.85), 
+                rgba(168, 85, 247, 0.85),
+                rgba(236, 72, 153, 0.85));
+        }
+        
+        .crystal-cube.mca .cube-face {
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.85), 
+                rgba(6, 182, 212, 0.85),
+                rgba(139, 92, 246, 0.85));
+        }
+        
+        .crystal-cube.msds .cube-face {
+            background: linear-gradient(135deg, 
+                rgba(236, 72, 153, 0.85), 
+                rgba(249, 115, 22, 0.85),
+                rgba(59, 130, 246, 0.85));
+        }
+        
+        .cube-face.front  { transform: translateZ(60px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(60px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(60px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(60px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+        
+        @keyframes emergeCube {
+            0% { 
+                opacity: 0; 
+                transform: translateX(200px) rotateY(90deg) rotateX(45deg) scale(0.5);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0) rotateY(0) rotateX(0) scale(1);
+            }
+        }
+        
+        @keyframes rotateCube {
+            0% { transform: rotateY(0deg) rotateX(0deg) translateX(0) translateY(0); }
+            25% { transform: rotateY(90deg) rotateX(45deg) translateX(50px) translateY(-30px); }
+            50% { transform: rotateY(180deg) rotateX(0deg) translateX(0) translateY(0); }
+            75% { transform: rotateY(270deg) rotateX(-45deg) translateX(-50px) translateY(30px); }
+            100% { transform: rotateY(360deg) rotateX(0deg) translateX(0) translateY(0); }
+        }
+        
+        /* Enhanced crystal shine effects */
+        .crystal-shine {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: crystalShine 3s infinite;
+            border-radius: 10px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .edge-shine {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.9) 20%, 
+                rgba(255,255,255,0.7) 50%, 
+                rgba(255,255,255,0.9) 80%, 
+                transparent 100%);
+            animation: edgeShine 4s infinite;
+            z-index: 5;
+            pointer-events: none;
+            border-radius: 10px;
+        }
+        
+        @keyframes crystalShine {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+        }
+        
+        @keyframes edgeShine {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Placement chart styling */
+        .placement-chart-container {
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* Futuristic elements */
+        .hologram-effect {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5), 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        .data-stream {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .data-stream::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: dataStream 3s infinite;
+        }
+        
+        @keyframes dataStream {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body class="min-h-screen cyber-grid">
+    <!-- Header Section -->
+    <header class="header-gradient text-white py-4 px-6 shadow-lg neon-glow">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg pulse-glow">
+                    <span class="text-purple-600 font-bold text-xl">VIT</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">VIT University</h1>
+                    <p class="text-xs text-purple-100">UGC Approved Online Degree Programmes</p>
+                </div>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="font-medium hover:text-purple-200 transition-colors data-stream">Home</a>
+                <a href="#" class="font-medium hover:text-purple-200 transition-colors data-stream">Programmes</a>
+                <a href="#" class="font-medium hover:text-purple-200 transition-colors data-stream">Analytics</a>
+                <a href="#" class="font-medium hover:text-purple-200 transition-colors data-stream">About</a>
+                <a href="#" class="font-medium hover:text-purple-200 transition-colors data-stream">Contact</a>
+            </nav>
+            
+            <!-- CTA Button -->
+            <button class="px-5 py-2 bg-white text-purple-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105 pulse-glow">
+                Apply Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-6 bg-gradient-to-br from-white to-purple-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <!-- Left Content -->
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-in" style="animation-delay: 0.1s">
+                        <span class="gradient-text">Move Up</span> In Your Career
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 animate-in" style="animation-delay: 0.3s">
+                        UGC Approved Online Degree Programmes from VIT University
+                    </p>
+                    <button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all bounce-in hover:scale-105 pulse-glow" style="animation-delay: 0.5s">
+                        Explore Programmes
+                    </button>
+                    
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-3 gap-4 mt-12">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-purple-600">1200+</div>
+                            <div class="text-sm text-gray-600">Students Enrolled</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-cyan-600">99%</div>
+                            <div class="text-sm text-gray-600">Placement Rate</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-pink-600">4.8/5</div>
+                            <div class="text-sm text-gray-600">Student Rating</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Enhanced 3D Crystal Cubes Animation -->
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="cubes-container">
+                        <!-- MBA Cube -->
+                        <div class="crystal-cube mba">
+                            <div class="cube-face front">MBA</div>
+                            <div class="cube-face back">MBA</div>
+                            <div class="cube-face right">MBA</div>
+                            <div class="cube-face left">MBA</div>
+                            <div class="cube-face top">MBA</div>
+                            <div class="cube-face bottom">MBA</div>
+                            <div class="crystal-shine"></div>
+                            <div class="edge-shine"></div>
+                        </div>
+                        
+                        <!-- MCA Cube -->
+                        <div class="crystal-cube mca">
+                            <div class="cube-face front">MCA</div>
+                            <div class="cube-face back">MCA</div>
+                            <div class="cube-face right">MCA</div>
+                            <div class="cube-face left">MCA</div>
+                            <div class="cube-face top">MCA</div>
+                            <div class="cube-face bottom">MCA</div>
+                            <div class="crystal-shine"></div>
+                            <div class="edge-shine"></div>
+                        </div>
+                        
+                        <!-- M.Sc DS Cube -->
+                        <div class="crystal-cube msds">
+                            <div class="cube-face front">M.Sc DS</div>
+                            <div class="cube-face back">M.Sc DS</div>
+                            <div class="cube-face right">M.Sc DS</div>
+                            <div class="cube-face left">M.Sc DS</div>
+                            <div class="cube-face top">M.Sc DS</div>
+                            <div class="cube-face bottom">M.Sc DS</div>
+                            <div class="crystal-shine"></div>
+                            <div class="edge-shine"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Analytics Section with Charts -->
+    <section class="py-16 px-6 bg-gradient-to-br from-white to-purple-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 animate-in" style="animation-delay: 0.1s">
+                    Programme Analytics & Insights
+                </h2>
+                <p class="text-xl text-gray-600 animate-in" style="animation-delay: 0.3s">
+                    Real-time data on student enrollment and programme popularity
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Pie Chart - Programme Distribution -->
+                <div class="stat-card chart-fade-in hologram-effect" style="animation-delay: 0.2s">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Programme Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="programmeChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">Distribution of students across different programmes</p>
+                </div>
+                
+                <!-- Line Chart - Enrollment Trend -->
+                <div class="stat-card chart-fade-in hologram-effect" style="animation-delay: 0.4s">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Enrollment Trend (Last 6 Months)</h3>
+                    <div class="chart-container">
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">Monthly enrollment growth across all programmes</p>
+                </div>
+            </div>
+            
+            <!-- Placement Chart Section -->
+            <div class="stat-card mb-12 chart-fade-in hologram-effect" style="animation-delay: 0.6s">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center">Placement Growth Over Years</h3>
+                <div class="placement-chart-container">
+                    <canvas id="placementChart"></canvas>
+                </div>
+                <p class="text-gray-600 text-sm mt-4 text-center">VIT University has maintained near 100% placement rates since inception</p>
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="stat-card scale-up pulse-glow" style="animation-delay: 0.1s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Total Students</p>
+                            <p class="text-3xl font-bold text-purple-600 mt-2" id="totalStudents">0</p>
+                        </div>
+                        <i class="fas fa-users text-4xl text-purple-200"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card scale-up pulse-glow" style="animation-delay: 0.2s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Active Programmes</p>
+                            <p class="text-3xl font-bold text-cyan-600 mt-2">3</p>
+                        </div>
+                        <i class="fas fa-book text-4xl text-cyan-200"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card scale-up pulse-glow" style="animation-delay: 0.3s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Placement Rate</p>
+                            <p class="text-3xl font-bold text-pink-600 mt-2" id="placementRate">0%</p>
+                        </div>
+                        <i class="fas fa-briefcase text-4xl text-pink-200"></i>
+                    </div>
+                </div>
+                
+                <div class="stat-card scale-up pulse-glow" style="animation-delay: 0.4s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Avg. Rating</p>
+                            <p class="text-3xl font-bold text-orange-600 mt-2">4.8/5</p>
+                        </div>
+                        <i class="fas fa-star text-4xl text-orange-200"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="py-16 px-6 bg-gradient-to-br from-purple-50 to-cyan-50">
+        <div class="max-w-4xl mx-auto form-container neon-glow">
+            <div class="md:flex">
+                <div class="md:w-1/2 gradient-bg p-10 text-white">
+                    <h3 class="text-3xl font-bold mb-6">Start Your Journey</h3>
+                    <p class="mb-6">Join thousands of professionals who have transformed their careers with VIT University Online Programmes.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Industry-relevant curriculum</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Expert faculty guidance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Placement assistance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Global recognition</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 p-10">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Request Information</h3>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <input type="text" placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select Program</option>
+                            <option value="mba">MBA</option>
+                            <option value="mca">MCA</option>
+                            <option value="msds">MS in Data Science</option>
+                        </select>
+                        <button type="submit" class="w-full py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all pulse-glow">
+                            Submit Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 bg-gradient-to-r from-purple-900 to-cyan-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-purple-900 font-bold">VIT</span>
+                        </div>
+                        <span class="text-xl font-bold">VIT University Online</span>
+                    </div>
+                    <p class="text-gray-400">© 2025 VIT University. All Rights Reserved.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Initialize Pie Chart - Programme Distribution
+    const programmeCtx = document.getElementById('programmeChart').getContext('2d');
+    const programmeChart = new Chart(programmeCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['MBA', 'MCA', 'M.Sc. Data Science'],
+            datasets: [{
+                data: [45, 35, 20],
+                backgroundColor: [
+                    '#8b5cf6',
+                    '#3b82f6',
+                    '#ec4899'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 3,
+                hoverOffset: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14, weight: 'bold' },
+                        padding: 20,
+                        usePointStyle: true
+                    }
+                }
+            }
+        }
+    });
+
+    // Initialize Line Chart - Enrollment Trend
+    const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+    const enrollmentChart = new Chart(enrollmentCtx, {
+        type: 'line',
+        data: {
+            labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+            datasets: [{
+                label: 'Enrollments',
+                data: [150, 180, 230, 290, 340, 400],
+                borderColor: '#8b5cf6',
+                backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#7c3aed',
+                pointBorderWidth: 2,
+                pointHoverRadius: 6,
+                pointHoverBackgroundColor: '#a855f7'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#475569' },
+                    grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                },
+                x: {
+                    ticks: { color: '#475569' },
+                    grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Initialize Placement Chart
+    const placementCtx = document.getElementById('placementChart').getContext('2d');
+    const placementChart = new Chart(placementCtx, {
+        type: 'bar',
+        data: {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+            datasets: [{
+                label: 'Placement Rate (%)',
+                data: [98, 99, 98, 99, 100, 99, 100],
+                backgroundColor: [
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(236, 72, 153, 0.8)',
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(236, 72, 153, 0.8)',
+                    'rgba(139, 92, 246, 0.8)'
+                ],
+                borderColor: [
+                    '#8b5cf6',
+                    '#3b82f6',
+                    '#ec4899',
+                    '#8b5cf6',
+                    '#3b82f6',
+                    '#ec4899',
+                    '#8b5cf6'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        color: '#475569',
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                },
+                x: {
+                    ticks: { color: '#475569' },
+                    grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Placement Rate: ${context.parsed.y}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Animated Number Counters
+    function animateValue(id, start, end, duration, suffix = "") {
+        const obj = document.getElementById(id);
+        const range = end - start;
+        const minTimer = 50;
+        const stepTime = Math.max(Math.floor(duration / range), minTimer);
+        let current = start;
+        const timer = setInterval(() => {
+            current += 1;
+            obj.textContent = current + suffix;
+            if (current >= end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    // Animate Total Students (0 → 1200)
+    animateValue("totalStudents", 0, 1200, 1500);
+
+    // Animate Placement Rate (0 → 99%)
+    let placement = 0;
+    const placementTarget = 99;
+    const placementEl = document.getElementById("placementRate");
+    const placementInterval = setInterval(() => {
+        placement++;
+        placementEl.textContent = placement + "%";
+        if (placement >= placementTarget) clearInterval(placementInterval);
+    }, 20);
+</script>
+</body>
+</html>

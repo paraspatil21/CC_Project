@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT University Online Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Added Chart.js for data visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(30, 58, 138, 0.25);
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out forwards;
+        }
+        
+        /* Added new animations for chart elements */
+        .chart-fade-in {
+            animation: chartFadeIn 1.2s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .scale-up {
+            animation: scaleUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes chartFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleUp {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        
+        .card-gradient-1 {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        
+        .card-gradient-2 {
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+        }
+        
+        .card-gradient-3 {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
+        
+        .icon-bg {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Added chart container styling */
+        .chart-container {
+            position: relative;
+            height: 200px;        /* reduced height */
+            width: 100%;          /* full width but scaled */
+            max-width: 350px;     /* limits chart size */
+            margin: 0 auto;       /* center the charts */
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-card canvas {
+            display: block;
+            margin: 0 auto;
+            max-height: 200px;
+        }
+        
+        /* Square card styles */
+        .square-card {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Form styling */
+        .form-container {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Carousel styles */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-indicator.active {
+            background: white;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(0,0,0,0.7);
+        }
+        
+        .carousel-nav.prev {
+            left: 20px;
+        }
+        
+        .carousel-nav.next {
+            right: 20px;
+        }
+        
+        /* Logo styles */
+        .logo {
+            width: 150px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+        
+        /* New MBA section styles */
+        .mba-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .ranking-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .ranking-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .ranking-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ranking-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Announcement banner */
+        .announcement-banner {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .announcement-banner .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* About VIT section */
+        .about-vit {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+        }
+        
+        /* VITOL Advantage section */
+        .advantage-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Quick Links section */
+        .quick-links {
+            background: #f8fafc;
+        }
+        
+        /* Contact section */
+        .contact-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: #1e293b;
+        }
+        
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .modal-form input,
+        .modal-form select,
+        .modal-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .modal-form input:focus,
+        .modal-form select:focus,
+        .modal-form textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn-primary {
+            background: #3b82f6;
+            color: white;
+            border: none;
+        }
+        
+        .modal-btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .modal-btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .modal-btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .modal-success {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .modal-success-icon {
+            font-size: 4rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-success-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-success-message {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Updated styles for program cards */
+        .program-card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        
+        .program-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .program-card-body {
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .program-card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .program-card-subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .program-card-duration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .program-card-footer {
+            margin-top: auto;
+        }
+        
+        /* Updated styles for accreditation badges */
+        .accreditation-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .accreditation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .accreditation-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        
+        .accreditation-content {
+            flex-grow: 1;
+        }
+        
+        .accreditation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .accreditation-description {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+        <div class="marquee">
+            Admissions Open Now for VITOL MBA/MSc Data Science/MCA Online Degree Programmes - Apply Now &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Admissions Open Now for VITOL MBA/MSc Data Science/MCA Online Degree Programmes - Apply Now &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Admissions Open Now for VITOL MBA/MSc Data Science/MCA Online Degree Programmes - Apply Now
+        </div>
+    </div>
+
+    <!-- Header Section with Integrated Logo -->
+    <header class="header-gradient text-white py-4 px-6 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo Section - Now integrated in header -->
+            <div class="flex items-center space-x-3">
+                <div class="logo">
+                    <img src="/img/VIT.png" alt="VIT University Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">VIT University</h1>
+                    <p class="text-xs text-blue-100">UGC Approved Online Degree Programmes</p>
+                </div>
+            </div>
+            
+            <!-- CTA Button -->
+            <button class="modal-trigger px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105" data-modal="apply-modal">
+                Apply Now
+            </button>
+        </div>
+    </header>
+
+    <!-- Carousel Section -->
+    <section class="carousel">
+        <div class="carousel-inner">
+            <!-- Single Slide -->
+            <div class="carousel-item">
+                <img src="./img/vit_hero.png" alt="Online Learning" class="w-full h-full object-cover">
+                <div class="carousel-caption">
+                    <h2 class="text-3xl font-bold mb-2">Build Your Professional Career with an MBA from VIT Online</h2>
+                    <p class="text-lg">Admissions Open Now</p>
+                    <button class="modal-trigger mt-4 px-6 py-3 bg-white text-blue-800 font-semibold rounded-lg hover:shadow-lg transition-all inline-block" data-modal="enquire-modal">
+                        Enquire Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New MBA Program Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mba-section p-10 md:p-16 mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-in">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Accelerate Your Leadership Journey with VIT's MBA</h1>
+                        <p class="text-xl mb-8 text-blue-100">The <strong>Vellore Institute of Technology (VIT)</strong> launches its 2-year <strong>online Master of Business Administration (MBA) Programme</strong>, that provides a transformative educational experience to empower your professional journey.</p>
+                        <p class="text-lg mb-8 text-blue-100">A Program designed to expand your business knowledge, enhance your leadership impact, drive innovation, make bold decisions, and seize growth opportunities.</p>
+                        <button class="modal-trigger px-8 py-4 bg-white text-blue-800 font-semibold rounded-xl hover:shadow-xl transition-all hover:scale-105 inline-block" data-modal="mba-modal">
+                            Apply for MBA Programme
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 slide-in-right">
+                        <div class="ranking-card">
+                            <div class="ranking-number">#14</div>
+                            <div class="ranking-description">Best University, 2025 NIRF University Rankings - India</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">#14</div>
+                            <div class="ranking-description">Best Research, 2025 NIRF University Rankings - India</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">TOP 2</div>
+                            <div class="ranking-description">2025 Shanghai ARWU Ranking</div>
+                        </div>
+                        <div class="ranking-card">
+                            <div class="ranking-number">791-800</div>
+                            <div class="ranking-description">QS World University Ranking 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-6 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 animate-in" style="animation-delay: 0.1s">
+                    <span class="gradient-text">Join World Ranked VIT's</span><br>
+                    <span class="text-4xl md:text-5xl">UGC Approved Online Degree Programmes</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 animate-in" style="animation-delay: 0.3s">
+                    Move Up In Your Career with VIT University Online Programmes
+                </p>
+                <button class="modal-trigger px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all bounce-in hover:scale-105 inline-block" style="animation-delay: 0.5s" data-modal="explore-modal">
+                    Explore Programmes
+                </button>
+            </div>
+            
+         <!-- Program Cards - Now Square and Centered -->
+<div class="flex justify-center mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
+        <!-- MBA Card -->
+        <div class="rounded-2xl p-6 shadow-2xl card-hover card-gradient-1 text-white floating square-card" style="animation-delay: 0.1s; height: 350px; width: 270px;">
+            <div class="program-card-content h-full">
+                <div class="program-card-header">
+                    <div class="icon-bg rounded-xl p-2">
+                        <i class="fas fa-chart-line text-1xl"></i>
+                    </div>
+                    <span class="glass-effect px-2 py-1 rounded-full text-sm font-small">UGC & AICTE Approved</span>
+                </div>
+                <div class="program-card-body">
+                    <h3 class="program-card-title">MBA </h3>
+                    <p class="program-card-subtitle">Master of Business Administration</p>
+                    <div class="program-card-duration">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>Duration: 24 Months</span>
+                    </div>
+                </div>
+                <div class="program-card-footer">
+                    <a href="mba3.html" class="w-full py-3 bg-white text-blue-800 font-semibold rounded-xl hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center">
+                        Know More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MCA Card -->
+        <div class="rounded-2xl p-6 shadow-2xl card-hover card-gradient-2 text-white floating square-card" style="animation-delay: 0.1s; height: 350px; width: 270px;">
+            <div class="program-card-content h-full">
+                <div class="program-card-header">
+                    <div class="icon-bg rounded-xl p-2">
+                        <i class="fas fa-laptop-code text-1xl"></i>
+                    </div>
+                    <span class="glass-effect px-1 py-1 rounded-full text-sm font-small">UGC & AICTE Approved</span>
+                </div>
+                <div class="program-card-body">
+                    <h3 class="program-card-title">MCA</h3>
+                    <p class="program-card-subtitle">Master of Computer Applications</p>
+                    <div class="program-card-duration">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>Duration: 24 Months</span>
+                    </div>
+                </div>
+                <div class="program-card-footer">
+                    <a href="mca.html" class="w-full py-3 bg-white text-teal-800 font-semibold rounded-xl hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center">
+                        Know More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- M.Sc. Data Science Card -->
+        <div class="rounded-2xl p-6 shadow-2xl card-hover card-gradient-3 text-white floating square-card" style="animation-delay: 0.1s; height: 350px; width: 270px;">
+            <div class="program-card-content h-full">
+                <div class="program-card-header">
+                    <div class="icon-bg rounded-xl p-2">
+                        <i class="fas fa-database text-2xl"></i>
+                    </div>
+                    <span class="glass-effect px-2 py-1 rounded-full text-sm font-medium">UGC Approved</span>
+                </div>
+                <div class="program-card-body">
+                    <h3 class="program-card-title">M.Sc. DS</h3>
+                    <p class="program-card-subtitle">Master of Science in Data Science</p>
+                    <div class="program-card-duration">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>Duration: 24 Months</span>
+                    </div>
+                </div>
+                <div class="program-card-footer">
+                    <a href="ds.html" class="w-full py-3 bg-white text-purple-800 font-semibold rounded-xl hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center">
+                        Know More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <!-- Accreditation Badges -->
+            <div class="flex justify-center mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full">
+                    <div class="accreditation-card">
+                        <i class="fas fa-university accreditation-icon text-blue-600"></i>
+                        <div class="accreditation-content">
+                            <h3 class="accreditation-title">UGC Entitled</h3>
+                            <p class="accreditation-description">Recognized by University Grants Commission</p>
+                        </div>
+                    </div>
+                    <div class="accreditation-card">
+                        <i class="fas fa-award accreditation-icon text-green-600"></i>
+                        <div class="accreditation-content">
+                            <h3 class="accreditation-title">NAAC A++</h3>
+                            <p class="accreditation-description">Highest accreditation grade</p>
+                        </div>
+                    </div>
+                    <div class="accreditation-card">
+                        <i class="fas fa-check-circle accreditation-icon text-purple-600"></i>
+                        <div class="accreditation-content">
+                            <h3 class="accreditation-title">AICTE Approved</h3>
+                            <p class="accreditation-description">Approved by All India Council for Technical Education</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Application Form - Now Below the Cards -->
+            <div class="max-w-4xl mx-auto form-container mt-12">
+                <div class="md:flex">
+                    <div class="md:w-1/2 gradient-bg p-10 text-white">
+                        <h3 class="text-3xl font-bold mb-6">Start Your Journey</h3>
+                        <p class="mb-6">Join thousands of professionals who have transformed their careers with VIT University Online Programmes.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Industry-relevant curriculum</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Expert faculty guidance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Placement assistance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Global recognition</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 p-10">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Request Information</h3>
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" placeholder="First Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" placeholder="Last Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select Program</option>
+                                <option value="mba">MBA</option>
+                                <option value="mca">MCA</option>
+                                <option value="msds">MS in Data Science</option>
+                            </select>
+                            <button class="modal-trigger w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all inline-block text-center" data-modal="submit-modal">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About VIT Section -->
+    <section class="py-16 px-6 about-vit">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-in">
+                    <h2 class="text-4xl font-bold mb-6">VIT Online Learning Institute</h2>
+                    <p class="text-lg mb-6 text-gray-200">
+                        VIT Online Education was started with the objective of offering online education to aspiring learners around the globe. VIT Online Education will cater to the needs of students and working professionals interested in pursuing higher education at their own pace, and it provides flexibility in learning. The development in information and communication technologies paves way for taking education to the doorstep of learners.
+                    </p>
+                    <p class="text-lg mb-6 text-gray-200">
+                        VIT Online Education aims at creating and offering programmes and courses in emerging areas with a focus on quality, adhering to the regulations of UGC and AICTE. It has state-of-the-art facilities for the development and delivery of online programmes.
+                    </p>
+                    <p class="text-lg mb-6 text-gray-200">
+                        Experienced faculty members of VIT are presenting the lectures of online Degree Programmes.
+                    </p>
+                </div>
+                <div class="slide-in-right">
+                    <div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 shadow-2xl">
+                        <h3 class="text-3xl font-bold mb-6">Vellore Institute of Technology</h3>
+                        <p class="text-lg mb-6 text-blue-100">
+                            VIT was established with the aim of providing quality higher education on par with international standards. It persistently seeks and adopts innovative methods to improve the quality of higher education on a consistent basis.
+                        </p>
+                        <p class="text-lg mb-6 text-blue-100">
+                            The campus has a cosmopolitan atmosphere with students from all corners of the globe.
+                        </p>
+                        <button class="modal-trigger px-6 py-3 bg-white text-blue-800 font-semibold rounded-lg hover:shadow-lg transition-all inline-block" data-modal="info-modal">
+                            Click here for more information
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Analytics Section with Charts -->
+    <section class="py-16 px-6 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 animate-in" style="animation-delay: 0.1s">
+                    Programme Analytics & Insights
+                </h2>
+                <p class="text-xl text-gray-300 animate-in" style="animation-delay: 0.3s">
+                    Real-time data on student enrollment and programme popularity
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Pie Chart - Programme Distribution -->
+                <div class="stat-card chart-fade-in" style="animation-delay: 0.2s">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Programme Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="programmeChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">Distribution of students across different programmes</p>
+                </div>
+                
+                <!-- Line Chart - Enrollment Trend -->
+                <div class="stat-card chart-fade-in" style="animation-delay: 0.4s">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Enrollment Trend (Last 6 Months)</h3>
+                    <div class="chart-container">
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                    <p class="text-gray-600 text-sm mt-4">Monthly enrollment growth across all programmes</p>
+                </div>
+            </div>
+            
+            <!-- Stats Grid - REMOVED AS REQUESTED -->
+        </div>
+    </section>
+
+    <!-- VITOL Advantage Section -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">VITOL Advantage</h2>
+                <p class="text-xl text-gray-600">Why choose VIT Online Learning for your education</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Well-defined learning objectives</h3>
+                    <p class="text-gray-600">Clear, measurable goals that guide your educational journey and ensure you achieve your career aspirations.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Continuous Student Engagement</h3>
+                    <p class="text-gray-600">Regular interactions with faculty and peers to enhance learning and build professional networks.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Synchronous and Asynchronous Classes</h3>
+                    <p class="text-gray-600">Flexible learning options with both live interactive sessions and self-paced recorded lectures.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chalkboard-teacher text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Course mentors for Regular Interaction</h3>
+                    <p class="text-gray-600">Dedicated mentors to guide you throughout your program and provide personalized support.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-book text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Structured Course Materials</h3>
+                    <p class="text-gray-600">Comprehensive, well-organized learning resources designed for effective online education.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Student Support</h3>
+                    <p class="text-gray-600">Comprehensive support services including academic advising, technical assistance, and career guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info Section -->
+    <section class="py-16 px-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+               <!-- Certificate Programmes -->
+<div class="bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-8 shadow-lg">
+    <h2 class="text-3xl font-bold mb-6 text-amber-800">Certificate Programmes</h2>
+    
+    <div class="bg-white rounded-xl p-6 mb-6 shadow-md">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">Data Science and AI Programme</h3>
+        <div class="flex items-center mb-4">
+            <i class="far fa-clock text-amber-600 mr-2"></i>
+            <span class="text-gray-600">Duration: 16 weeks</span>
+        </div>
+        <button class="modal-trigger px-5 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors" data-modal="data-science-form-modal">
+            Know More
+        </button>
+    </div>
+    
+    <div class="bg-white rounded-xl p-6 mb-6 shadow-md">
+        <h3 class="text-xl font-bold mb-3 text-gray-800">AI and Machine Learning</h3>
+        <div class="flex items-center mb-4">
+            <i class="far fa-clock text-amber-600 mr-2"></i>
+            <span class="text-gray-600">Duration: 16 Weeks</span>
+        </div>
+        <button class="modal-trigger px-5 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-700 transition-colors" data-modal="ai-ml-form-modal">
+            Know More
+        </button>
+    </div>
+    
+    <div class="h-px bg-amber-200 my-8"></div>
+    
+    <div>
+        <h3 class="text-xl font-bold mb-4 text-amber-800">Vision</h3>
+        <p class="text-gray-700 mb-6">Enriching life through excellence in online education.</p>
+        
+        <h3 class="text-xl font-bold mb-4 text-amber-800">Mission</h3>
+        <p class="text-gray-700 mb-4">World class online Education: Excellence in online education, grounded in ethics and critical thinking, for improvement of life.</p>
+        <p class="text-gray-700 mb-4">Creating and offering online education with the help of cutting edge technologies to aspiring learners globally.</p>
+        <p class="text-gray-700">Providing an ambience for self-paced learning.</p>
+    </div>
+</div>
+
+<!-- Data Science and AI Form Modal -->
+<div class="modal" id="data-science-form-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Apply Now for Data Science and AI Programme</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form class="modal-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="">Select Programme</option>
+                    <option value="data-science">Data Science and AI Programme</option>
+                </select>
+                <textarea placeholder="Additional Information (Optional)" rows="3"></textarea>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn modal-btn-secondary">Cancel</button>
+            <button class="modal-btn modal-btn-primary">Submit Application</button>
+        </div>
+    </div>
+</div>
+
+<!-- AI and Machine Learning Form Modal -->
+<div class="modal" id="ai-ml-form-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Apply Now for AI and Machine Learning Programme</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form class="modal-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="">Select Programme</option>
+                    <option value="ai-ml">AI and Machine Learning Programme</option>
+                </select>
+                <textarea placeholder="Additional Information (Optional)" rows="3"></textarea>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn modal-btn-secondary">Cancel</button>
+            <button class="modal-btn modal-btn-primary">Submit Application</button>
+        </div>
+    </div>
+</div>
+                
+                <!-- Stats Section -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-3xl font-bold mb-8 text-blue-800 text-center">Why Choose VIT Online?</h2>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">UGC Approved</h3>
+                            <p class="text-gray-600">Recognized by University Grants Commission</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-laptop text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Flexible Learning</h3>
+                            <p class="text-gray-600">Study at your own pace and schedule</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chalkboard-teacher text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Expert Faculty</h3>
+                            <p class="text-gray-600">Learn from industry experts</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-briefcase text-blue-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Career Support</h3>
+                            <p class="text-gray-600">Placement assistance and guidance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">Ready to advance your career?</h3>
+                        <p class="text-gray-600 mb-4">Join thousands of professionals who have transformed their careers with VIT University Online Programmes.</p>
+                        <button class="modal-trigger w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all inline-block text-center" data-modal="apply-modal">
+                            Apply Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="py-16 px-6 quick-links">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Quick Links</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-file-alt text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Regulations</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-check-circle text-3xl text-green-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">UGC Approval</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-check-double text-3xl text-purple-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">AICTE Approval</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-file-contract text-3xl text-red-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Affidavit</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-comment-alt text-3xl text-yellow-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">The Feedback Process</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-hands-helping text-3xl text-indigo-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">E-Samadhan</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-chart-line text-3xl text-teal-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">CIQA</h3>
+                </a>
+                <a href="#" class="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all hover:scale-105">
+                    <i class="fas fa-balance-scale text-3xl text-orange-600 mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-800">Grievances</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 px-6 contact-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="animate-in">
+                    <h2 class="text-4xl font-bold mb-6">Contact VIT Online Learning Institute</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Address</h3>
+                                <p class="text-blue-100">#724 – Technology Tower, VIT<br>Vellore – 632014<br>Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Office Hours</h3>
+                                <p class="text-blue-100">9:00am – 5:00pm</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Telephone</h3>
+                                <p class="text-blue-100">0416 220 2485</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-2xl mr-4 mt-1"></i>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Email</h3>
+                                <p class="text-blue-100">support@vitonline.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-in-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Send us a Message</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" placeholder="Subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <textarea placeholder="Your Message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            <button class="modal-trigger w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all inline-block text-center" data-modal="message-modal">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-blue-900 font-bold">VIT</span>
+                        </div>
+                        <span class="text-xl font-bold">VIT University Online</span>
+                    </div>
+                    <p class="text-gray-400">© 2025 VIT. All Rights Reserved.</p>
+                    <p class="text-gray-400 text-sm mt-2">Designed by Centre for Technical Support (CTS)</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="apply-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Apply Now</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for your interest in VIT University Online Programmes. Please fill out the application form below.</p>
+                <form class="modal-form mt-4">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="">Select Programme</option>
+                        <option value="mba">MBA</option>
+                        <option value="mca">MCA</option>
+                        <option value="msds">M.Sc. Data Science</option>
+                    </select>
+                    <textarea placeholder="Additional Information (Optional)" rows="3"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancel</button>
+                <button class="modal-btn modal-btn-primary">Submit Application</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="enquire-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Enquire Now</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please provide your details and we'll get back to you with more information about our programmes.</p>
+                <form class="modal-form mt-4">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="">Select Programme of Interest</option>
+                        <option value="mba">MBA</option>
+                        <option value="mca">MCA</option>
+                        <option value="msds">M.Sc. Data Science</option>
+                    </select>
+                    <textarea placeholder="Your Questions or Comments" rows="3" required></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancel</button>
+                <button class="modal-btn modal-btn-primary">Submit Enquiry</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="mba-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">MBA Programme Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Master of Business Administration (MBA)</strong></p>
+                <p>Duration: 24 Months</p>
+                <p>Our MBA programme is designed to provide a comprehensive business education with a focus on leadership, strategic thinking, and practical skills.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>UGC & AICTE Approved</li>
+                    <li>Flexible online learning</li>
+                    <li>Industry-relevant curriculum</li>
+                    <li>Expert faculty guidance</li>
+                    <li>Placement assistance</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Apply Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="mca-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">MCA Programme Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Master of Computer Applications (MCA)</strong></p>
+                <p>Duration: 24 Months</p>
+                <p>Our MCA programme provides in-depth knowledge of computer applications, programming, and software development.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>UGC & AICTE Approved</li>
+                    <li>Comprehensive IT curriculum</li>
+                    <li>Hands-on programming experience</li>
+                    <li>Industry projects</li>
+                    <li>Career support services</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Apply Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="ds-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">M.Sc. Data Science Programme Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Master of Science in Data Science</strong></p>
+                <p>Duration: 24 Months</p>
+                <p>Our M.Sc. Data Science programme equips students with the skills to analyze, interpret, and leverage data for strategic decision-making.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>UGC Approved</li>
+                    <li>Cutting-edge data science curriculum</li>
+                    <li>Practical data analysis projects</li>
+                    <li>Machine learning and AI applications</li>
+                    <li>Industry mentorship</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Apply Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="explore-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Explore Programmes</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Discover our range of online degree programmes designed for working professionals and aspiring learners.</p>
+                <div class="space-y-4 mt-4">
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg">MBA</h4>
+                        <p class="text-gray-600">Master of Business Administration</p>
+                        <p class="text-sm mt-2">Duration: 24 Months | UGC & AICTE Approved</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg">MCA</h4>
+                        <p class="text-gray-600">Master of Computer Applications</p>
+                        <p class="text-sm mt-2">Duration: 24 Months | UGC & AICTE Approved</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg">M.Sc. Data Science</h4>
+                        <p class="text-gray-600">Master of Science in Data Science</p>
+                        <p class="text-sm mt-2">Duration: 24 Months | UGC Approved</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Request More Info</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="submit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Submit Application</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please review your information before submitting your application.</p>
+                <form class="modal-form mt-4">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <select required>
+                        <option value="">Select Programme</option>
+                        <option value="mba">MBA</option>
+                        <option value="mca">MCA</option>
+                        <option value="msds">M.Sc. Data Science</option>
+                    </select>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="agree" required>
+                        <label for="agree" class="ml-2 text-sm">I agree to the terms and conditions</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancel</button>
+                <button class="modal-btn modal-btn-primary">Submit Application</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">About VIT</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Vellore Institute of Technology (VIT) is one of India's premier higher education institutions.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>Established in 1984</li>
+                    <li>NAAC A++ Accreditation</li>
+                    <li>Ranked among top universities in India</li>
+                    <li>Global recognition and partnerships</li>
+                    <li>State-of-the-art infrastructure</li>
+                    <li>Experienced faculty members</li>
+                </ul>
+                <p class="mt-4">VIT Online Learning brings the same quality education to students worldwide through flexible online programmes.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Science Certificate Modal -->
+    <div class="modal" id="data-science-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Data Science and AI Programme</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Data Science and AI Certificate Programme</strong></p>
+                <p>Duration: 16 weeks</p>
+                <p>Our Data Science and AI programme provides comprehensive training in data analysis, machine learning, and artificial intelligence applications.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>Hands-on projects with real-world datasets</li>
+                    <li>Python programming and data visualization</li>
+                    <li>Machine learning algorithms and techniques</li>
+                    <li>AI model development and deployment</li>
+                    <li>Industry mentorship and career guidance</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI and Machine Learning Certificate Modal -->
+    <div class="modal" id="ai-ml-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">AI and Machine Learning Programme</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>AI and Machine Learning Certificate Programme</strong></p>
+                <p>Duration: 16 Weeks</p>
+                <p>Our AI and Machine Learning programme focuses on the fundamentals of artificial intelligence, neural networks, and advanced machine learning techniques.</p>
+                <ul class="list-disc pl-5 mt-3 space-y-2">
+                    <li>Deep learning and neural networks</li>
+                    <li>Natural language processing</li>
+                    <li>Computer vision applications</li>
+                    <li>Reinforcement learning</li>
+                    <li>Industry projects and case studies</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Close</button>
+                <button class="modal-btn modal-btn-primary">Enroll Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Send Message</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please fill out the form below to send us a message. We'll respond as soon as possible.</p>
+                <form class="modal-form mt-4">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary">Cancel</button>
+                <button class="modal-btn modal-btn-primary">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-success">
+                <div class="modal-success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="modal-success-title">Thank You!</h3>
+                <p class="modal-success-message">Your submission has been received. We'll contact you shortly.</p>
+                <button class="modal-btn modal-btn-primary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all modal triggers
+            const modalTriggers = document.querySelectorAll('.modal-trigger');
+            const modals = document.querySelectorAll('.modal');
+            const modalCloseButtons = document.querySelectorAll('.modal-close');
+            const modalSecondaryButtons = document.querySelectorAll('.modal-btn-secondary');
+            
+            // Open modal when trigger is clicked
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Close modal when close button is clicked
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close modal when secondary button is clicked
+            modalSecondaryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = this.closest('.modal');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close modal when clicking outside the modal content
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modals.forEach(modal => {
+                        if (modal.classList.contains('active')) {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                }
+            });
+            
+            // Form submission handlers
+            const primaryButtons = document.querySelectorAll('.modal-btn-primary');
+            primaryButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modal = this.closest('.modal');
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                        
+                        // Show success modal
+                        const successModal = document.getElementById('success-modal');
+                        if (successModal) {
+                            successModal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }
+                    }
+                });
+            });
+            
+            // Close success modal
+            const successModalClose = document.querySelector('#success-modal .modal-btn-primary');
+            if (successModalClose) {
+                successModalClose.addEventListener('click', function() {
+                    const successModal = document.getElementById('success-modal');
+                    if (successModal) {
+                        successModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+
+        // Initialize Pie Chart - Programme Distribution
+        const programmeCtx = document.getElementById('programmeChart').getContext('2d');
+        const programmeChart = new Chart(programmeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['MBA', 'MCA', 'M.Sc. Data Science'],
+                datasets: [{
+                    data: [45, 35, 20],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#14b8a6',
+                        '#a855f7'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, weight: 'bold' },
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // Initialize Line Chart - Enrollment Trend
+        const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+        const enrollmentChart = new Chart(enrollmentCtx, {
+            type: 'line',
+            data: {
+                labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                datasets: [{
+                    label: 'Enrollments',
+                    data: [150, 180, 230, 290, 340, 400],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#1e3a8a',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6,
+                    pointHoverBackgroundColor: '#2563eb'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#475569' },
+                        grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                    },
+                    x: {
+                        ticks: { color: '#475569' },
+                        grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
