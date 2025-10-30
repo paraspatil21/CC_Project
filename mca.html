@@ -4598,112 +4598,125 @@
         </div>
     </footer>
 
-    <script>
-        // Modal functionality
-        const modal = document.getElementById('applicationModal');
-        const thankYouModal = document.getElementById('thankYouModal');
-        const closeModal = document.querySelectorAll('.close-modal');
-        const applyNowHeader = document.getElementById('applyNowHeader');
-        const applyNowMobile = document.getElementById('applyNowMobile');
-        const getBrochure = document.getElementById('getBrochure');
-        const applyForMCA = document.getElementById('applyForMCA');
-        const startApplication = document.getElementById('startApplication');
-        const downloadBrochure = document.getElementById('downloadBrochure');
-        const thankYouCloseButton = document.getElementById('thankYouCloseButton');
-        const heroForm = document.getElementById('heroForm');
-        const exploreSpecializations = document.getElementById('exploreSpecializations');
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('applicationModal');
+    const thankYouModal = document.getElementById('thankYouModal');
+    const closeModal = document.querySelectorAll('.close-modal');
+    const applyNowHeader = document.getElementById('applyNowHeader');
+    const applyNowMobile = document.getElementById('applyNowMobile');
+    const getBrochure = document.getElementById('getBrochure');
+    const applyForMCA = document.getElementById('applyForMCA');
+    const startApplication = document.getElementById('startApplication');
+    const downloadBrochure = document.getElementById('downloadBrochure');
+    const thankYouCloseButton = document.getElementById('thankYouCloseButton');
+    const heroForm = document.getElementById('heroForm');
+    const exploreSpecializations = document.getElementById('exploreSpecializations');
 
-        // Function to open application modal
-        function openModal() {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
+    // Function to open application modal
+    function openModal() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
 
-        // Function to close application modal
-        function closeModalFunc() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Enable scrolling
-        }
+    // Function to close application modal
+    function closeModalFunc() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+    }
 
-        // Function to open thank you modal
-        function openThankYouModal() {
-            thankYouModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
+    // Function to open thank you modal
+    function openThankYouModal() {
+        thankYouModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
 
-        // Function to close thank you modal
-        function closeThankYouModalFunc() {
-            thankYouModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Enable scrolling
-        }
+    // Function to close thank you modal
+    function closeThankYouModalFunc() {
+        thankYouModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+    }
 
-        // Event listeners for opening application modal
-        applyNowHeader.addEventListener('click', openModal);
-        applyNowMobile.addEventListener('click', openModal);
-        applyForMCA.addEventListener('click', openModal);
-        startApplication.addEventListener('click', openModal);
-        downloadBrochure.addEventListener('click', openModal);
-        exploreSpecializations.addEventListener('click', openModal);
+    // Function to reset form
+    function resetHeroForm() {
+        heroForm.reset();
+    }
 
-        // Event listener for closing application modal
-        closeModal.forEach(closeBtn => {
-            closeBtn.addEventListener('click', function() {
-                if (modal.style.display === 'flex') {
-                    closeModalFunc();
-                }
-            });
-        });
+    // Event listeners for opening application modal
+    applyNowHeader.addEventListener('click', openModal);
+    applyNowMobile.addEventListener('click', openModal);
+    applyForMCA.addEventListener('click', openModal);
+    startApplication.addEventListener('click', openModal);
+    downloadBrochure.addEventListener('click', openModal);
+    exploreSpecializations.addEventListener('click', openModal);
 
-        // Event listener for thank you modal close button
-        thankYouCloseButton.addEventListener('click', closeThankYouModalFunc);
-
-        // Event listener for Get Brochure button in hero form
-        getBrochure.addEventListener('click', function(event) {
-            event.preventDefault();
-            
-            // Validate the form
-            if (heroForm.checkValidity()) {
-                // If form is valid, open the thank you modal
-                openThankYouModal();
-            } else {
-                // If form is invalid, show validation messages
-                heroForm.reportValidity();
-            }
-        });
-
-        // Close modals when clicking outside of them
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
+    // Event listener for closing application modal
+    closeModal.forEach(closeBtn => {
+        closeBtn.addEventListener('click', function() {
+            if (modal.style.display === 'flex') {
                 closeModalFunc();
             }
-            if (event.target === thankYouModal) {
-                closeThankYouModalFunc();
-            }
         });
+    });
 
-        // Close modals with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModalFunc();
-                closeThankYouModalFunc();
-            }
-        });
+    // Event listener for thank you modal close button
+    thankYouCloseButton.addEventListener('click', function() {
+        closeThankYouModalFunc();
+        resetHeroForm(); // Reset form when closing thank you modal
+    });
 
-        // Application form submission handler
-        const modalForm = document.querySelector('.modal-form');
-        modalForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Here you would typically send the form data to a server
-            alert('Thank you for your application! We will contact you soon.');
+    // Event listener for Get Brochure button in hero form
+    getBrochure.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        // Validate the form
+        if (heroForm.checkValidity()) {
+            // If form is valid, open the thank you modal
+            openThankYouModal();
+            // Reset the form after a short delay to ensure modal opens
+            setTimeout(resetHeroForm, 100);
+        } else {
+            // If form is invalid, show validation messages
+            heroForm.reportValidity();
+        }
+    });
+
+    // Close modals when clicking outside of them
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
             closeModalFunc();
-        });
+        }
+        if (event.target === thankYouModal) {
+            closeThankYouModalFunc();
+            resetHeroForm(); // Reset form when clicking outside thank you modal
+        }
+    });
 
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+    // Close modals with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModalFunc();
+            closeThankYouModalFunc();
+            resetHeroForm(); // Reset form when closing with Escape key
+        }
+    });
+
+    // Application form submission handler
+    const modalForm = document.querySelector('.modal-form');
+    modalForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Here you would typically send the form data to a server
+        alert('Thank you for your application! We will contact you soon.');
+        closeModalFunc();
+        this.reset(); // Reset the modal form
+    });
+
+      // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
         
         // Initialize Particles.js
         particlesJS("particles-js", {

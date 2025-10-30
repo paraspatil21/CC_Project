@@ -3530,6 +3530,29 @@
             document.body.style.overflow = 'auto'; // Enable scrolling
         }
         
+          // Function to clear form data
+        function clearFormData() {
+            heroForm.reset();
+        }
+
+                // Event listener for getBrochure button - opens thank you modal and clears form
+        getBrochure.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            // Validate form
+            if (heroForm.checkValidity()) {
+                // Open the thank you modal
+                openThankYouModalFunc();
+                
+                // Clear the form data
+                clearFormData();
+            } else {
+                // If form is not valid, show validation messages
+                heroForm.reportValidity();
+            }
+        });
+
+
         // Event listeners for opening modal
         headerApplyNow.addEventListener('click', openModal);
         mobileApplyNow.addEventListener('click', openModal);

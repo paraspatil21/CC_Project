@@ -3605,355 +3605,360 @@
         </div>
     </footer>
 
-    <script>
-        // Modal Functionality - Updated to match MBA code
-        const modal = document.getElementById('applicationModal');
-        const closeModal = document.querySelector('.close-modal');
-        const modalForm = document.querySelector('.modal-form');
-        const headerApplyNow = document.getElementById('headerApplyNow');
-        const mobileApplyNow = document.getElementById('mobileApplyNow');
-        const exploreSpecializations = document.getElementById('exploreSpecializations');
-        const getBrochure = document.getElementById('getBrochure');
-        const applyForMSc = document.getElementById('applyForMSc');
-        const startApplicationNow = document.getElementById('startApplicationNow');
-        
-        // Thank You Modal Functionality
-        const thankYouModal = document.getElementById('thankYouModal');
-        const thankYouCloseButton = document.getElementById('thankYouCloseButton');
-        const heroForm = document.getElementById('heroForm');
-        
-        // Function to open modal
-        function openModal() {
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+  <script>
+    // Modal Functionality - Updated to match MBA code
+    const modal = document.getElementById('applicationModal');
+    const closeModal = document.querySelector('.close-modal');
+    const modalForm = document.querySelector('.modal-form');
+    const headerApplyNow = document.getElementById('headerApplyNow');
+    const mobileApplyNow = document.getElementById('mobileApplyNow');
+    const exploreSpecializations = document.getElementById('exploreSpecializations');
+    const getBrochure = document.getElementById('getBrochure');
+    const applyForMSc = document.getElementById('applyForMSc');
+    const startApplicationNow = document.getElementById('startApplicationNow');
+    
+    // Thank You Modal Functionality
+    const thankYouModal = document.getElementById('thankYouModal');
+    const thankYouCloseButton = document.getElementById('thankYouCloseButton');
+    const heroForm = document.getElementById('heroForm');
+    
+    // Function to open modal
+    function openModal() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Function to open thank you modal
+    function openThankYouModal() {
+        thankYouModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Function to close modal
+    function closeModalFunc() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+    }
+    
+    // Function to close thank you modal
+    function closeThankYouModalFunc() {
+        thankYouModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Enable scrolling
+    }
+    
+    // Event listeners for opening modal
+    headerApplyNow.addEventListener('click', openModal);
+    mobileApplyNow.addEventListener('click', openModal);
+    exploreSpecializations.addEventListener('click', openModal);
+    applyForMSc.addEventListener('click', openModal);
+    startApplicationNow.addEventListener('click', openModal);
+    
+    // Event listener for getBrochure button - opens thank you modal and resets form
+    getBrochure.addEventListener('click', function(event) {
+        event.preventDefault();
+        // Validate form
+        if (heroForm.checkValidity()) {
+            // Show thank you modal
+            openThankYouModal();
+            
+            // Reset the form data
+            heroForm.reset();
+            
+            // Additional manual reset for checkboxes if needed
+            document.getElementById('noSurname').checked = false;
+        } else {
+            heroForm.reportValidity();
         }
-        
-        // Function to open thank you modal
-        function openThankYouModal() {
-            thankYouModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-        
-        // Function to close modal
-        function closeModalFunc() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Enable scrolling
-        }
-        
-        // Function to close thank you modal
-        function closeThankYouModalFunc() {
-            thankYouModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Enable scrolling
-        }
-        
-        // Event listeners for opening modal
-        headerApplyNow.addEventListener('click', openModal);
-        mobileApplyNow.addEventListener('click', openModal);
-        exploreSpecializations.addEventListener('click', openModal);
-        applyForMSc.addEventListener('click', openModal);
-        startApplicationNow.addEventListener('click', openModal);
-        
-        // Event listener for getBrochure button - opens thank you modal
-        getBrochure.addEventListener('click', function(event) {
-            event.preventDefault();
-            // Validate form
-            if (heroForm.checkValidity()) {
-                openThankYouModal();
-            } else {
-                heroForm.reportValidity();
-            }
-        });
-        
-        // Event listener for closing modal
-        closeModal.addEventListener('click', closeModalFunc);
-        
-        // Event listener for closing thank you modal
-        thankYouCloseButton.addEventListener('click', closeThankYouModalFunc);
-        
-        // Close modal when clicking outside of it
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModalFunc();
-            }
-            if (event.target === thankYouModal) {
-                closeThankYouModalFunc();
-            }
-        });
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModalFunc();
-                closeThankYouModalFunc();
-            }
-        });
-        
-        // Form submission handler
-        modalForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Here you would typically send the form data to a server
-            alert('Thank you for your application! We will contact you soon.');
+    });
+    
+    // Event listener for closing modal
+    closeModal.addEventListener('click', closeModalFunc);
+    
+    // Event listener for closing thank you modal
+    thankYouCloseButton.addEventListener('click', closeThankYouModalFunc);
+    
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
             closeModalFunc();
-        });
-        
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-        
-        // Initialize Particles.js
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 50, density: { enable: true, value_area: 800 } },
-                color: { value: "#a855f7" },
-                shape: { type: "circle" },
-                opacity: { value: 0.3, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#a855f7",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            }
-        });
-
-        // FAQ flip card functionality - SIMPLIFIED FIXED VERSION
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqCards = document.querySelectorAll('.faq-flip-card');
-            
-            faqCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // Remove flipped class from all cards
-                    faqCards.forEach(c => c.classList.remove('flipped'));
-                    // Add flipped class to clicked card
-                    this.classList.add('flipped');
-                });
-            });
-            
-            // Close cards when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.faq-flip-card')) {
-                    faqCards.forEach(card => card.classList.remove('flipped'));
-                }
-            });
-        });
-        
-        // Salary Chart
-        const salaryCtx = document.getElementById('salaryChart').getContext('2d');
-        const salaryChart = new Chart(salaryCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Associate Analyst', 'Analytics Consultant', 'Machine Learning Engineer'],
-                datasets: [{
-                    label: 'Average Annual Salary (LPA)',
-                    data: [5.4, 9.1, 19.4],
-                    backgroundColor: [
-                        'rgba(102, 126, 234, 0.8)',
-                        'rgba(167, 139, 250, 0.8)',
-                        'rgba(79, 70, 229, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(102, 126, 234, 1)',
-                        'rgba(167, 139, 250, 1)',
-                        'rgba(79, 70, 229, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Salary (LPA)'
-                        },
-                        ticks: {
-                            color: '#475569',
-                            callback: function(value) {
-                                return '₹' + value + ' LPA';
-                            }
-                        },
-                        grid: { color: 'rgba(203, 213, 225, 0.3)' }
-                    },
-                    x: {
-                        ticks: { 
-                            color: '#475569',
-                            font: { size: 14 }
-                        },
-                        grid: { color: 'rgba(203, 213, 225, 0.1)' }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `Salary: ₹${context.raw} LPA`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Work Experience Chart
-        const workExpCtx = document.getElementById('workExperienceChart').getContext('2d');
-        const workExpChart = new Chart(workExpCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['<3 Years', '3-5 Years', '5-7 Years', '7-10 Years', '10+ Years'],
-                datasets: [{
-                    data: [25, 40, 20, 10, 5],
-                    backgroundColor: [
-                        'rgba(102, 126, 234, 0.8)',
-                        'rgba(167, 139, 250, 0.8)',
-                        'rgba(79, 70, 229, 0.8)',
-                        'rgba(236, 72, 153, 0.8)',
-                        'rgba(16, 185, 129, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(102, 126, 234, 1)',
-                        'rgba(167, 139, 250, 1)',
-                        'rgba(79, 70, 229, 1)',
-                        'rgba(236, 72, 153, 1)',
-                        'rgba(16, 185, 129, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            font: { size: 12 },
-                            padding: 15,
-                            usePointStyle: true
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `${context.label}: ${context.raw}%`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Job Functions Chart
-        const jobFuncCtx = document.getElementById('jobFunctionsChart').getContext('2d');
-        const jobFuncChart = new Chart(jobFuncCtx, {
-            type: 'bar',
-            data: {
-                labels: ['IT/Technology', 'Sales', 'Engineering', 'Entrepreneurship', 'Operations', 'Finance', 'Research', 'Strategic Planning', 'Education', 'Consulting'],
-                datasets: [{
-                    label: 'Percentage of Participants',
-                    data: [35, 15, 12, 5, 8, 7, 6, 4, 4, 4],
-                    backgroundColor: 'rgba(79, 70, 229, 0.7)',
-                    borderColor: 'rgba(79, 70, 229, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: '#475569',
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        },
-                        grid: { color: 'rgba(203, 213, 225, 0.3)' }
-                    },
-                    y: {
-                        ticks: { 
-                            color: '#475569',
-                            font: { size: 11 }
-                        },
-                        grid: { color: 'rgba(203, 213, 225, 0.1)' }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-        
-        // GSAP animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Animate elements on scroll
-        gsap.utils.toArray('.cyber-card').forEach(card => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: "power2.out"
-            });
-        });
-        
-        // Glitch text effect
-        const glitchTexts = document.querySelectorAll('.glitch-text');
-        glitchTexts.forEach(text => {
-            setInterval(() => {
-                text.classList.add('glitching');
-                setTimeout(() => {
-                    text.classList.remove('glitching');
-                }, 300);
-            }, 5000);
-        });
-        
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
         }
-    </script>
-</body>
-</html>
+        if (event.target === thankYouModal) {
+            closeThankYouModalFunc();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModalFunc();
+            closeThankYouModalFunc();
+        }
+    });
+    
+    // Form submission handler
+    modalForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Here you would typically send the form data to a server
+        alert('Thank you for your application! We will contact you soon.');
+        closeModalFunc();
+    });
+    
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+    
+    // Initialize Particles.js
+    particlesJS("particles-js", {
+        particles: {
+            number: { value: 50, density: { enable: true, value_area: 800 } },
+            color: { value: "#a855f7" },
+            shape: { type: "circle" },
+            opacity: { value: 0.3, random: true },
+            size: { value: 3, random: true },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#a855f7",
+                opacity: 0.2,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            }
+        }
+    });
+
+    // FAQ flip card functionality - SIMPLIFIED FIXED VERSION
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqCards = document.querySelectorAll('.faq-flip-card');
+        
+        faqCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove flipped class from all cards
+                faqCards.forEach(c => c.classList.remove('flipped'));
+                // Add flipped class to clicked card
+                this.classList.add('flipped');
+            });
+        });
+        
+        // Close cards when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.faq-flip-card')) {
+                faqCards.forEach(card => card.classList.remove('flipped'));
+            }
+        });
+    });
+    
+    // Salary Chart
+    const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+    const salaryChart = new Chart(salaryCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Associate Analyst', 'Analytics Consultant', 'Machine Learning Engineer'],
+            datasets: [{
+                label: 'Average Annual Salary (LPA)',
+                data: [5.4, 9.1, 19.4],
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(167, 139, 250, 0.8)',
+                    'rgba(79, 70, 229, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(102, 126, 234, 1)',
+                    'rgba(167, 139, 250, 1)',
+                    'rgba(79, 70, 229, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Salary (LPA)'
+                    },
+                    ticks: {
+                        color: '#475569',
+                        callback: function(value) {
+                            return '₹' + value + ' LPA';
+                        }
+                    },
+                    grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                },
+                x: {
+                    ticks: { 
+                        color: '#475569',
+                        font: { size: 14 }
+                    },
+                    grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Salary: ₹${context.raw} LPA`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Work Experience Chart
+    const workExpCtx = document.getElementById('workExperienceChart').getContext('2d');
+    const workExpChart = new Chart(workExpCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['<3 Years', '3-5 Years', '5-7 Years', '7-10 Years', '10+ Years'],
+            datasets: [{
+                data: [25, 40, 20, 10, 5],
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(167, 139, 250, 0.8)',
+                    'rgba(79, 70, 229, 0.8)',
+                    'rgba(236, 72, 153, 0.8)',
+                    'rgba(16, 185, 129, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(102, 126, 234, 1)',
+                    'rgba(167, 139, 250, 1)',
+                    'rgba(79, 70, 229, 1)',
+                    'rgba(236, 72, 153, 1)',
+                    'rgba(16, 185, 129, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                    labels: {
+                        font: { size: 12 },
+                        padding: 15,
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}%`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Job Functions Chart
+    const jobFuncCtx = document.getElementById('jobFunctionsChart').getContext('2d');
+    const jobFuncChart = new Chart(jobFuncCtx, {
+        type: 'bar',
+        data: {
+            labels: ['IT/Technology', 'Sales', 'Engineering', 'Entrepreneurship', 'Operations', 'Finance', 'Research', 'Strategic Planning', 'Education', 'Consulting'],
+            datasets: [{
+                label: 'Percentage of Participants',
+                data: [35, 15, 12, 5, 8, 7, 6, 4, 4, 4],
+                backgroundColor: 'rgba(79, 70, 229, 0.7)',
+                borderColor: 'rgba(79, 70, 229, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#475569',
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    },
+                    grid: { color: 'rgba(203, 213, 225, 0.3)' }
+                },
+                y: {
+                    ticks: { 
+                        color: '#475569',
+                        font: { size: 11 }
+                    },
+                    grid: { color: 'rgba(203, 213, 225, 0.1)' }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+    
+    // GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate elements on scroll
+    gsap.utils.toArray('.cyber-card').forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        });
+    });
+    
+    // Glitch text effect
+    const glitchTexts = document.querySelectorAll('.glitch-text');
+    glitchTexts.forEach(text => {
+        setInterval(() => {
+            text.classList.add('glitching');
+            setTimeout(() => {
+                text.classList.remove('glitching');
+            }, 300);
+        }, 5000);
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+</script>
