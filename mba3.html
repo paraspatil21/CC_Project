@@ -142,6 +142,69 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
+        /* Thank You Modal Styles */
+        .thank-you-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thank-you-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+            text-align: center;
+        }
+
+        .thank-you-icon {
+            font-size: 3rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1e3a8a;
+        }
+
+        .thank-you-message {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .thank-you-close-button {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .thank-you-close-button:hover {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
         /* Header Styles */
         .header-gradient {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -2039,6 +2102,18 @@
         </div>
     </div>
 
+    <!-- Thank You Modal Popup -->
+    <div id="thankYouModal" class="thank-you-modal">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="thank-you-title">Thank You!</h2>
+            <p class="thank-you-message">Your submission has been received. We'll contact you shortly.</p>
+            <button id="thankYouCloseButton" class="thank-you-close-button">Close</button>
+        </div>
+    </div>
+
     <!-- Particle Background -->
     <div id="particles-js" class="particle-bg"></div>
     
@@ -2128,7 +2203,7 @@
                 
                 <div class="hero-form">
                     <h2 class="form-title">Get Your Brochure</h2>
-                    <form>
+                    <form id="heroForm">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
                             <input type="text" id="firstName" class="form-input" placeholder="First Name" required>
@@ -3426,9 +3501,20 @@
         const applyForMBA = document.getElementById('applyForMBA');
         const startApplicationNow = document.getElementById('startApplicationNow');
         
+        // Thank You Modal Functionality
+        const thankYouModal = document.getElementById('thankYouModal');
+        const thankYouCloseButton = document.getElementById('thankYouCloseButton');
+        const heroForm = document.getElementById('heroForm');
+        
         // Function to open modal
         function openModal() {
             modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        // Function to open thank you modal
+        function openThankYouModal() {
+            thankYouModal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; // Prevent scrolling
         }
         
@@ -3438,21 +3524,43 @@
             document.body.style.overflow = 'auto'; // Enable scrolling
         }
         
+        // Function to close thank you modal
+        function closeThankYouModalFunc() {
+            thankYouModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+        
         // Event listeners for opening modal
         headerApplyNow.addEventListener('click', openModal);
         mobileApplyNow.addEventListener('click', openModal);
         exploreSpecializations.addEventListener('click', openModal);
-        getBrochure.addEventListener('click', openModal);
         applyForMBA.addEventListener('click', openModal);
         startApplicationNow.addEventListener('click', openModal);
         
+        // Event listener for getBrochure button - opens thank you modal
+        getBrochure.addEventListener('click', function(event) {
+            event.preventDefault();
+            // Validate form
+            if (heroForm.checkValidity()) {
+                openThankYouModal();
+            } else {
+                heroForm.reportValidity();
+            }
+        });
+        
         // Event listener for closing modal
         closeModal.addEventListener('click', closeModalFunc);
+        
+        // Event listener for closing thank you modal
+        thankYouCloseButton.addEventListener('click', closeThankYouModalFunc);
         
         // Close modal when clicking outside of it
         window.addEventListener('click', function(event) {
             if (event.target === modal) {
                 closeModalFunc();
+            }
+            if (event.target === thankYouModal) {
+                closeThankYouModalFunc();
             }
         });
         
@@ -3460,6 +3568,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModalFunc();
+                closeThankYouModalFunc();
             }
         });
         
@@ -3658,4 +3767,3 @@
     </script>
 </body>
 </html>
-
