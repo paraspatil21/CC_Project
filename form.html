@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - VIT University Online Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(30, 58, 138, 0.25);
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        
+        .card-gradient-1 {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        
+        .card-gradient-2 {
+            background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+        }
+        
+        .card-gradient-3 {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        }
+        
+        .icon-bg {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Form styling */
+        .form-container {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        /* Logo styles */
+        .logo {
+            width: 150px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+        }
+        
+        /* Form elements */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: white;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .form-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-btn-primary {
+            background: #3b82f6;
+            color: white;
+            border: none;
+        }
+        
+        .form-btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .form-btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .form-btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+        
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+        
+        .success-message-text {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+        
+        /* Form step animation */
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header Section -->
+    <header class="header-gradient text-white py-4 px-6 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+                <div class="logo">
+                    <img src="/img/VIT.png" alt="VIT University Logo">
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">VIT University</h1>
+                    <p class="text-xs text-blue-100">UGC Approved Online Degree Programmes</p>
+                </div>
+            </div>
+            
+            <!-- Back to Home Button -->
+            <a href="index.html" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Form Section -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar" style="width: 33%"></div>
+            </div>
+            
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="md:flex">
+                    <!-- Left Side - Form Info -->
+                    <div class="md:w-2/5 gradient-bg p-10 text-white">
+                        <h3 class="text-3xl font-bold mb-6">Start Your Journey</h3>
+                        <p class="mb-6">Join thousands of professionals who have transformed their careers with VIT University Online Programmes.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Industry-relevant curriculum</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Expert faculty guidance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Placement assistance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Global recognition</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-10">
+                            <h4 class="text-xl font-bold mb-4">Why Choose VIT Online?</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                    <i class="fas fa-university text-2xl mb-2"></i>
+                                    <p class="text-sm">UGC Approved</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                    <i class="fas fa-award text-2xl mb-2"></i>
+                                    <p class="text-sm">NAAC A++</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                    <i class="fas fa-laptop text-2xl mb-2"></i>
+                                    <p class="text-sm">Flexible Learning</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                    <i class="fas fa-chart-line text-2xl mb-2"></i>
+                                    <p class="text-sm">Career Growth</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Form -->
+                    <div class="md:w-3/5 p-10">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">Application Form</h3>
+                        
+                        <!-- Step 1: Personal Information -->
+                        <div class="form-step active" id="step1">
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="fullName">
+                                        Full Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="email">
+                                        Email Address <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="email" id="email" class="form-input" placeholder="Enter your email address" required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="phone">
+                                        Phone Number <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required>
+                                </div>
+                                
+                                <div class="flex justify-end">
+                                    <button class="form-btn form-btn-primary next-step" data-next="step2">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Programme Selection -->
+                        <div class="form-step" id="step2">
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="programme">
+                                        Select Programme <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="programme" class="form-select" required>
+                                        <option value="">Choose a programme</option>
+                                        <option value="mba">MBA - Master of Business Administration</option>
+                                        <option value="mca">MCA - Master of Computer Applications</option>
+                                        <option value="msds">M.Sc. DS - Master of Science in Data Science</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="qualification">
+                                        Highest Qualification <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="qualification" class="form-select" required>
+                                        <option value="">Select your qualification</option>
+                                        <option value="bachelor">Bachelor's Degree</option>
+                                        <option value="master">Master's Degree</option>
+                                        <option value="diploma">Diploma</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="experience">
+                                        Work Experience (Years)
+                                    </label>
+                                    <select id="experience" class="form-select">
+                                        <option value="0">No experience</option>
+                                        <option value="1-2">1-2 years</option>
+                                        <option value="3-5">3-5 years</option>
+                                        <option value="5-10">5-10 years</option>
+                                        <option value="10+">10+ years</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="flex justify-between">
+                                    <button class="form-btn form-btn-secondary prev-step" data-prev="step1">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button class="form-btn form-btn-primary next-step" data-next="step3">
+                                        Next <i class="fas fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Additional Information -->
+                        <div class="form-step" id="step3">
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="additionalInfo">
+                                        Additional Information
+                                    </label>
+                                    <textarea id="additionalInfo" class="form-textarea" placeholder="Any additional information you'd like to share..."></textarea>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 font-medium mb-2" for="howHeard">
+                                        How did you hear about us?
+                                    </label>
+                                    <select id="howHeard" class="form-select">
+                                        <option value="">Select an option</option>
+                                        <option value="search">Search Engine</option>
+                                        <option value="social">Social Media</option>
+                                        <option value="friend">Friend/Colleague</option>
+                                        <option value="advertisement">Advertisement</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="agree" class="mr-2" required>
+                                    <label for="agree" class="text-gray-700">
+                                        I agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a> <span class="text-red-500">*</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex justify-between">
+                                    <button class="form-btn form-btn-secondary prev-step" data-prev="step2">
+                                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                                    </button>
+                                    <button class="form-btn form-btn-primary" id="submitForm">
+                                        Submit Application
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Success Message -->
+                        <div class="success-message" id="successMessage" style="display: none;">
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3 class="success-title">Thank You!</h3>
+                            <p class="success-message-text">Your application has been submitted successfully. We'll contact you shortly.</p>
+                            <a href="index.html" class="form-btn form-btn-primary">
+                                Back to Homepage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-blue-900 font-bold">VIT</span>
+                        </div>
+                        <span class="text-xl font-bold">VIT University Online</span>
+                    </div>
+                    <p class="text-gray-400">© 2025 VIT. All Rights Reserved.</p>
+                    <p class="text-gray-400 text-sm mt-2">Designed by Centre for Technical Support (CTS)</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form step functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('progressBar');
+            const formSteps = document.querySelectorAll('.form-step');
+            const nextButtons = document.querySelectorAll('.next-step');
+            const prevButtons = document.querySelectorAll('.prev-step');
+            const submitButton = document.getElementById('submitForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Update progress bar
+            function updateProgressBar(step) {
+                const progress = (step / formSteps.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // Show specific step
+            function showStep(stepId) {
+                formSteps.forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById(stepId).classList.add('active');
+                
+                // Update progress bar based on step
+                let stepNumber = 1;
+                if (stepId === 'step2') stepNumber = 2;
+                if (stepId === 'step3') stepNumber = 3;
+                updateProgressBar(stepNumber);
+            }
+            
+            // Next button click handler
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const nextStep = this.getAttribute('data-next');
+                    showStep(nextStep);
+                });
+            });
+            
+            // Previous button click handler
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const prevStep = this.getAttribute('data-prev');
+                    showStep(prevStep);
+                });
+            });
+            
+            // Form submission
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const programme = document.getElementById('programme').value;
+                const qualification = document.getElementById('qualification').value;
+                const agree = document.getElementById('agree').checked;
+                
+                if (!fullName || !email || !phone || !programme || !qualification || !agree) {
+                    alert('Please fill in all required fields and agree to the terms and conditions.');
+                    return;
+                }
+                
+                // Show success message
+                document.querySelector('.form-step.active').style.display = 'none';
+                successMessage.style.display = 'block';
+                updateProgressBar(4);
+                
+                // In a real application, you would submit the form data to a server here
+                console.log('Form submitted with data:', {
+                    fullName,
+                    email,
+                    phone,
+                    programme,
+                    qualification,
+                    experience: document.getElementById('experience').value,
+                    additionalInfo: document.getElementById('additionalInfo').value,
+                    howHeard: document.getElementById('howHeard').value
+                });
+            });
+        });
+    </script>
+</body>
+</html>

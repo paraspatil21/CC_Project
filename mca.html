@@ -45,179 +45,6 @@
             overflow-x: hidden;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFadeIn 0.3s ease-out;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6b7280;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: #4f46e5;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1e3a8a;
-            text-align: center;
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
-        }
-
-        .modal-form-group input,
-        .modal-form-group select {
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .modal-form-group input:focus,
-        .modal-form-group select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .modal-submit-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .modal-submit-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
-        /* Thank You Modal Styles */
-        .thank-you-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .thank-you-content {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFadeIn 0.3s ease-out;
-            text-align: center;
-        }
-
-        .thank-you-icon {
-            font-size: 3rem;
-            color: #10b981;
-            margin-bottom: 1rem;
-        }
-
-        .thank-you-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1e3a8a;
-        }
-
-        .thank-you-message {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 1.5rem;
-        }
-
-        .thank-you-close-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .thank-you-close-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
         /* Header Styles */
         .header-gradient {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -259,6 +86,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .cyber-button::before {
@@ -863,6 +692,8 @@
             overflow: hidden;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .cyber-button::before {
@@ -2120,172 +1951,6 @@
             color: white;
         }
 
-      /* Modal Styles */
-       .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFadeIn 0.3s ease-out;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6b7280;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: #4f46e5;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1e3a8a;
-            text-align: center;
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
-        }
-
-        .modal-form-group input,
-        .modal-form-group select {
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .modal-form-group input:focus,
-        .modal-form-group select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .modal-submit-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .modal-submit-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Thank You Modal Styles */
-        .thank-you-modal-content {
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .thank-you-icon {
-            font-size: 4rem;
-            color: #10b981;
-            margin-bottom: 1.5rem;
-        }
-
-        .thank-you-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1e3a8a;
-        }
-
-        .thank-you-message {
-            color: #6b7280;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .thank-you-close-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .thank-you-close-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-         /* Form Validation Styles */
-        .form-input.error {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
-        .error-message {
-            color: #ef4444;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .book-container {
@@ -2962,104 +2627,57 @@
     
     <!-- Morphing Grid Background -->
     <div class="morphing-grid"></div>
-    
-    <!-- Modal Popup -->
-    <div id="applicationModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Apply for MCA Programme</h2>
-            <form class="modal-form">
-                <div class="modal-form-group">
-                    <label for="modalFirstName">First Name</label>
-                    <input type="text" id="modalFirstName" placeholder="First Name" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalLastName">Last Name</label>
-                    <input type="text" id="modalLastName" placeholder="Last Name" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalEmail">Email</label>
-                    <input type="email" id="modalEmail" placeholder="Email" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalPhone">Phone Number</label>
-                    <input type="tel" id="modalPhone" placeholder="Phone Number" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalExperience">Work Experience</label>
-                    <select id="modalExperience" required>
-                        <option value="">Select Work Experience</option>
-                        <option value="0-2">0-2 years</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="6-10">6-10 years</option>
-                        <option value="10+">10+ years</option>
-                    </select>
-                </div>
-                <button type="submit" class="modal-submit-button">Submit Application</button>
-            </form>
-        </div>
-    </div>
 
-    <!-- Thank You Modal Popup -->
-    <div id="thankYouModal" class="thank-you-modal">
-        <div class="thank-you-content">
-            <div class="thank-you-icon">
-                <i class="fas fa-check-circle"></i>
+<!-- Header Section with Integrated Logo -->
+<header class="header-gradient text-white py-4 px-6 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo Section - Matching the first code -->
+        <div class="flex items-center space-x-3">
+            <div class="logo">
+                <img src="img/VIT.png" alt="VIT University Logo">
             </div>
-            <h2 class="thank-you-title">Thank You!</h2>
-            <p class="thank-you-message">Your submission has been received. We'll contact you shortly.</p>
-            <button id="thankYouCloseButton" class="thank-you-close-button">Close</button>
+            <div>
+                <h1 class="text-xl font-bold">VIT University</h1>
+                <p class="text-xs text-blue-100">UGC Approved Online Degree Programmes</p>
+            </div>
         </div>
-    </div>
-
-    <!-- Header Section with Integrated Logo -->
-    <header class="header-gradient text-white py-4 px-6 shadow-lg">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <!-- Logo Section -->
-            <div class="flex items-center space-x-3">
-                <div class="logo">
-                    <img src="img/VIT.png" alt="VIT University Logo">
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold">VIT University</h1>
-                    <p class="text-xs text-blue-100">UGC Approved Online Degree Programmes</p>
-                </div>
-            </div>
-            
-            <!-- Desktop Navigation -->
-            <nav class="desktop-nav hidden md:flex space-x-8">
-                <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
-                <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
-                <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
-                <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
-            </nav>
-            
-            <!-- Mobile Navigation -->
-            <div class="mobile-menu md:hidden">
-                <button id="mobileMenuButton" class="text-white">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            
-            <!-- CTA Button -->
-            <button id="applyNowHeader" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105 hidden md:block">
-                Apply Now
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav hidden md:flex space-x-8">
+            <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+            <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+            <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+            <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu md:hidden">
+            <button id="mobileMenuButton" class="text-white">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
         
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="md:hidden hidden mt-4 bg-blue-800 rounded-lg p-4">
-            <div class="flex flex-col space-y-4">
-                <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
-                <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
-                <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
-                <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
-                <button id="applyNowMobile" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all text-center">
-                    Apply Now
-                </button>
-            </div>
+        <!-- CTA Button -->
+        <a href="form.html" id="headerApplyNow" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all hover:scale-105 hidden md:block">
+            Apply Now
+        </a>
+    </div>
+    
+    
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="md:hidden hidden mt-4 bg-blue-800 rounded-lg p-4">
+        <div class="flex flex-col space-y-4">
+            <a href="Home.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+            <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+            <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
+            <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
+            <a href="form.html" id="mobileApplyNow" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all text-center">
+                Apply Now
+            </a>
         </div>
-    </header>
+    </div>
+</header>
+
 
     <!-- New Hero Section with Photo Background and Form -->
     <section class="hero-section">
@@ -3088,9 +2706,9 @@
                         </div>
                     </div>
                     
-                    <button id="exploreSpecializations" class="cyber-button inline-block">
-                        <i class="fas fa-book-open mr-2"></i> Explore Specializations
-                    </button>
+                   <a href="form.html" id="exploreSpecializations" class="cyber-button inline-block">
+                    <i class="fas fa-book-open mr-2"></i> Explore Specializations
+                </a>
                 </div>
                 
                 <div class="hero-form">
@@ -3195,9 +2813,9 @@
                     <h3 class="text-3xl font-bold mb-6">Accelerate Your Technology Career with VIT's MCA</h3>
                     <p class="text-lg mb-6 text-gray-700">The <strong class="text-indigo-600">Vellore Institute of Technology (VIT)</strong> offers a 2-year online Master of Computer Applications (MCA) Programme that provides a transformative educational experience to empower your professional journey in technology.</p>
                     <p class="text-lg mb-8 text-gray-600">A Program designed to expand your technical knowledge, enhance your software development skills, drive innovation, and seize growth opportunities in the rapidly evolving IT industry.</p>
-                    <button id="applyForMCA" class="cyber-button px-8 py-4 text-lg inline-block">
+                    <a href="form.html" id="applyForMCA" class="cyber-button px-8 py-4 text-lg inline-block">
                         Apply for MCA Programme
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="combined-right" data-aos="fade-left">
@@ -3383,12 +3001,12 @@
                         </div>
                         
                         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                            <a href="#" class="cyber-button text-center">
+                            <a href="form.html" class="cyber-button text-center">
                                 Programme Eligibility
                             </a>
-                            <button id="downloadBrochure" class="cyber-button text-center" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+                            <a href="form.html" class="cyber-button text-center" style="background: linear-gradient(135deg, #ec4899, #db2777);">
                                 Download Brochure
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -4520,9 +4138,9 @@
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Early registrations are encouraged. Seats fill up quickly!</h2>
             <p class="text-xl text-gray-600 mb-8">Orientation Date: To Be Announced</p>
-            <button id="startApplication" class="cyber-button px-8 py-4 text-lg inline-block">
+            <a href="form.html" id="startApplication" class="cyber-button px-8 py-4 text-lg inline-block">
                 START APPLICATION NOW
-            </button>
+            </a>
             <div class="mt-6">
                 <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">UGC/AICTE Mandatory Disclosures. Click Here</a>
             </div>
@@ -4599,119 +4217,7 @@
     </footer>
 
   <script>
-    // Modal functionality
-    const modal = document.getElementById('applicationModal');
-    const thankYouModal = document.getElementById('thankYouModal');
-    const closeModal = document.querySelectorAll('.close-modal');
-    const applyNowHeader = document.getElementById('applyNowHeader');
-    const applyNowMobile = document.getElementById('applyNowMobile');
-    const getBrochure = document.getElementById('getBrochure');
-    const applyForMCA = document.getElementById('applyForMCA');
-    const startApplication = document.getElementById('startApplication');
-    const downloadBrochure = document.getElementById('downloadBrochure');
-    const thankYouCloseButton = document.getElementById('thankYouCloseButton');
-    const heroForm = document.getElementById('heroForm');
-    const exploreSpecializations = document.getElementById('exploreSpecializations');
-
-    // Function to open application modal
-    function openModal() {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    // Function to close application modal
-    function closeModalFunc() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Enable scrolling
-    }
-
-    // Function to open thank you modal
-    function openThankYouModal() {
-        thankYouModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    // Function to close thank you modal
-    function closeThankYouModalFunc() {
-        thankYouModal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Enable scrolling
-    }
-
-    // Function to reset form
-    function resetHeroForm() {
-        heroForm.reset();
-    }
-
-    // Event listeners for opening application modal
-    applyNowHeader.addEventListener('click', openModal);
-    applyNowMobile.addEventListener('click', openModal);
-    applyForMCA.addEventListener('click', openModal);
-    startApplication.addEventListener('click', openModal);
-    downloadBrochure.addEventListener('click', openModal);
-    exploreSpecializations.addEventListener('click', openModal);
-
-    // Event listener for closing application modal
-    closeModal.forEach(closeBtn => {
-        closeBtn.addEventListener('click', function() {
-            if (modal.style.display === 'flex') {
-                closeModalFunc();
-            }
-        });
-    });
-
-    // Event listener for thank you modal close button
-    thankYouCloseButton.addEventListener('click', function() {
-        closeThankYouModalFunc();
-        resetHeroForm(); // Reset form when closing thank you modal
-    });
-
-    // Event listener for Get Brochure button in hero form
-    getBrochure.addEventListener('click', function(event) {
-        event.preventDefault();
-        
-        // Validate the form
-        if (heroForm.checkValidity()) {
-            // If form is valid, open the thank you modal
-            openThankYouModal();
-            // Reset the form after a short delay to ensure modal opens
-            setTimeout(resetHeroForm, 100);
-        } else {
-            // If form is invalid, show validation messages
-            heroForm.reportValidity();
-        }
-    });
-
-    // Close modals when clicking outside of them
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeModalFunc();
-        }
-        if (event.target === thankYouModal) {
-            closeThankYouModalFunc();
-            resetHeroForm(); // Reset form when clicking outside thank you modal
-        }
-    });
-
-    // Close modals with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeModalFunc();
-            closeThankYouModalFunc();
-            resetHeroForm(); // Reset form when closing with Escape key
-        }
-    });
-
-    // Application form submission handler
-    const modalForm = document.querySelector('.modal-form');
-    modalForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Here you would typically send the form data to a server
-        alert('Thank you for your application! We will contact you soon.');
-        closeModalFunc();
-        this.reset(); // Reset the modal form
-    });
-
-      // Initialize AOS (Animate On Scroll)
+    // Initialize AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
         once: true,
