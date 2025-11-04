@@ -32,179 +32,6 @@
             overflow-x: hidden;
         }
         
-        /* Modal Styles - Updated to match MBA code */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFadeIn 0.3s ease-out;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #6b7280;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: #4f46e5;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1e3a8a;
-            text-align: center;
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-form-group label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
-        }
-
-        .modal-form-group input,
-        .modal-form-group select {
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .modal-form-group input:focus,
-        .modal-form-group select:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .modal-submit-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .modal-submit-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
-        /* Thank You Modal Styles */
-        .thank-you-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .thank-you-content {
-            background-color: white;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            animation: modalFadeIn 0.3s ease-out;
-            text-align: center;
-        }
-
-        .thank-you-icon {
-            font-size: 3rem;
-            color: #10b981;
-            margin-bottom: 1rem;
-        }
-
-        .thank-you-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1e3a8a;
-        }
-
-        .thank-you-message {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 1.5rem;
-        }
-
-        .thank-you-close-button {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .thank-you-close-button:hover {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
         /* Header Styles */
         .header-gradient {
             background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
@@ -2392,55 +2219,6 @@
     </style>
 </head>
 <body class="futuristic-bg">
-    <!-- Application Modal Popup -->
-    <div id="applicationModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Apply for DS Programme</h2>
-            <form class="modal-form">
-                <div class="modal-form-group">
-                    <label for="modalFirstName">First Name</label>
-                    <input type="text" id="modalFirstName" placeholder="First Name" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalLastName">Last Name</label>
-                    <input type="text" id="modalLastName" placeholder="Last Name" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalEmail">Email</label>
-                    <input type="email" id="modalEmail" placeholder="Email" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalPhone">Phone Number</label>
-                    <input type="tel" id="modalPhone" placeholder="Phone Number" required>
-                </div>
-                <div class="modal-form-group">
-                    <label for="modalExperience">Work Experience</label>
-                    <select id="modalExperience" required>
-                        <option value="">Select Work Experience</option>
-                        <option value="0-2">0-2 years</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="6-10">6-10 years</option>
-                        <option value="10+">10+ years</option>
-                    </select>
-                </div>
-                <button type="submit" class="modal-submit-button">Submit Application</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Thank You Modal Popup -->
-    <div id="thankYouModal" class="thank-you-modal">
-        <div class="thank-you-content">
-            <div class="thank-you-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2 class="thank-you-title">Thank You!</h2>
-            <p class="thank-you-message">Your submission has been received. We'll contact you shortly.</p>
-            <button id="thankYouCloseButton" class="thank-you-close-button">Close</button>
-        </div>
-    </div>
-
     <!-- Particle Background -->
     <div id="particles-js" class="particle-bg"></div>
     
@@ -2489,9 +2267,9 @@
                 <a href="about VIT.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
                 <a href="academics.html" class="font-medium hover:text-blue-200 transition-colors"></a>
                 <a href="degree.html" class="font-medium hover:text-blue-200 transition-colors"> </a>
-                <button id="mobileApplyNow" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all text-center">
+                <a href="form.html" class="px-5 py-2 bg-white text-blue-800 font-medium rounded-lg hover:shadow-lg transition-all text-center">
                     Apply Now
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -2523,9 +2301,9 @@
                         </div>
                     </div>
                     
-                    <button id="exploreSpecializations" class="cyber-button inline-block">
+                    <a href="form.html" class="cyber-button inline-block">
                         <i class="fas fa-book-open mr-2"></i> Explore Specializations
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="hero-form">
@@ -2607,8 +2385,8 @@
                             By clicking the button below, you agree to receive communications via Email/Call/WhatsApp/SMS from VIT and its associates about this programme and other relevant programmes. This will override registry on DND/NDNC.
                         </p>
                         
-                        <!-- Updated button to open thank you modal -->
-                        <button id="getBrochure" class="form-button">
+                        <!-- Updated button to submit form -->
+                        <button type="submit" class="form-button">
                             Get Brochure
                         </button>
                     </form>
@@ -2652,9 +2430,9 @@
                     <h3 class="text-3xl font-bold mb-6">Elevate Your Career with VIT's M.Sc Data Science</h3>
                     <p class="text-lg mb-6 text-gray-700">The <strong class="text-indigo-600">Vellore Institute of Technology (VIT)</strong> has launched the online Master of Science in Data Science degree programme. A comprehensive programme that will teach you how to analyse and interpret complex data sets, derive meaningful insights, and make data-driven decisions across various domains.</p>
                     <p class="text-lg mb-8 text-gray-600">This programme will help you acquire and apply savvy data science skills to boost your career while alleviating bottlenecks and improving business outcomes.</p>
-                    <button id="applyForMSc" class="cyber-button px-8 py-4 text-lg inline-block">
+                    <a href="form.html" class="cyber-button px-8 py-4 text-lg inline-block">
                         Apply for M.Sc Data Science Programme
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="combined-right" data-aos="fade-left">
@@ -3527,9 +3305,9 @@
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Early registrations are encouraged. Seats fill up quickly!</h2>
             <p class="text-xl text-gray-600 mb-8">Orientation Date: To Be Announced</p>
-            <button id="startApplicationNow" class="cyber-button px-8 py-4 text-lg inline-block">
+            <a href="form.html" class="cyber-button px-8 py-4 text-lg inline-block">
                 START APPLICATION NOW
-            </button>
+            </a>
             <div class="mt-6">
                 <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">UGC/AICTE Mandatory Disclosures. Click Here</a>
             </div>
@@ -3606,103 +3384,6 @@
     </footer>
 
   <script>
-    // Modal Functionality - Updated to match MBA code
-    const modal = document.getElementById('applicationModal');
-    const closeModal = document.querySelector('.close-modal');
-    const modalForm = document.querySelector('.modal-form');
-    const headerApplyNow = document.getElementById('headerApplyNow');
-    const mobileApplyNow = document.getElementById('mobileApplyNow');
-    const exploreSpecializations = document.getElementById('exploreSpecializations');
-    const getBrochure = document.getElementById('getBrochure');
-    const applyForMSc = document.getElementById('applyForMSc');
-    const startApplicationNow = document.getElementById('startApplicationNow');
-    
-    // Thank You Modal Functionality
-    const thankYouModal = document.getElementById('thankYouModal');
-    const thankYouCloseButton = document.getElementById('thankYouCloseButton');
-    const heroForm = document.getElementById('heroForm');
-    
-    // Function to open modal
-    function openModal() {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-    
-    // Function to open thank you modal
-    function openThankYouModal() {
-        thankYouModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-    
-    // Function to close modal
-    function closeModalFunc() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Enable scrolling
-    }
-    
-    // Function to close thank you modal
-    function closeThankYouModalFunc() {
-        thankYouModal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Enable scrolling
-    }
-    
-    // Event listeners for opening modal
-    headerApplyNow.addEventListener('click', openModal);
-    mobileApplyNow.addEventListener('click', openModal);
-    exploreSpecializations.addEventListener('click', openModal);
-    applyForMSc.addEventListener('click', openModal);
-    startApplicationNow.addEventListener('click', openModal);
-    
-    // Event listener for getBrochure button - opens thank you modal and resets form
-    getBrochure.addEventListener('click', function(event) {
-        event.preventDefault();
-        // Validate form
-        if (heroForm.checkValidity()) {
-            // Show thank you modal
-            openThankYouModal();
-            
-            // Reset the form data
-            heroForm.reset();
-            
-            // Additional manual reset for checkboxes if needed
-            document.getElementById('noSurname').checked = false;
-        } else {
-            heroForm.reportValidity();
-        }
-    });
-    
-    // Event listener for closing modal
-    closeModal.addEventListener('click', closeModalFunc);
-    
-    // Event listener for closing thank you modal
-    thankYouCloseButton.addEventListener('click', closeThankYouModalFunc);
-    
-    // Close modal when clicking outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeModalFunc();
-        }
-        if (event.target === thankYouModal) {
-            closeThankYouModalFunc();
-        }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeModalFunc();
-            closeThankYouModalFunc();
-        }
-    });
-    
-    // Form submission handler
-    modalForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Here you would typically send the form data to a server
-        alert('Thank you for your application! We will contact you soon.');
-        closeModalFunc();
-    });
-    
     // Initialize AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
@@ -3962,3 +3643,5 @@
         });
     }
 </script>
+</body>
+</html>
